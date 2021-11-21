@@ -1,8 +1,8 @@
 <template>
-  <div class="image">
-    <img src="@/assets/background.svg" alt="" class="bg-img" />
+
+    <!-- <img src="@/assets/background_V2.svg" alt="" class="bg-img" /> -->
     <div id="app">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!--       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">majstor</a>
         <button
           class="navbar-toggler"
@@ -29,36 +29,43 @@
             </button>
           </form>
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#"
-                >Vrt <span class="sr-only">(current)</span></a
+            <li class="nav-item">
+              <a class="nav-link" href="/">Vrt</a
               >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Na kući</a>
             </li>
-            
+
             <li class="nav-item">
               <a class="nav-link" href="#">Po kući</a>
             </li>
           </ul>
-          
+
+          <div class="account">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/login">log in</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/signup">sign up</a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </nav>
+      </nav> -->
+        
       <router-view />
     </div>
-  </div>
+
 </template>
 
-<script>
-
-</script>
+<script></script>
 
 <style scoped>
 * {
   overflow-x: hidden;
 }
-
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -68,17 +75,15 @@
   color: #2c3e50;
 }
 
-
 a {
   text-decoration: none;
   font-weight: bold;
   color: #2c3e50;
 }
-a.router-link-exact-active {
+#nav a.router-link-exact-active {
   text-decoration: none;
   font-weight: bold;
-  color: #2c3e50;
-  color: #42b983;
+  color: #467db5;
 }
 
 .bg-img {
@@ -88,42 +93,41 @@ a.router-link-exact-active {
   filter: blur(2px);
 }
 
-.navbar{
+.navbar {
   position: fixed;
   background-color: #cccccc !important;
   padding: 0;
   width: 100%;
 }
-.navbar-brand{
-  font-family: 'Dancing Script', cursive;
+.navbar-brand {
+  font-family: "Dancing Script", cursive;
   font-size: 50px;
   padding-left: 35px;
 }
 
-form{
+form {
   padding: 0px 20px 0px 20px;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  
 }
-.form-control{
+.form-control {
   background-color: rgba(0, 0, 0, 0.323);
- border: 1px solid black;
- border-top-left-radius: 20px;
- border-bottom-left-radius: 20px;
+  border: 1px solid black;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
-.form-control::placeholder{
+.form-control::placeholder {
   color: white;
 }
- 
- .btn{
-   color:black;
-   border: 1px solid black;
-   border-top-right-radius: 20px;
-   border-bottom-right-radius: 20px;
- }
- .navbar-toggler{
-   border-color: transparent !important;
- }
+
+.btn {
+  color: black;
+  border: 1px solid black;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.navbar-toggler {
+  border-color: transparent !important;
+}
 </style>
