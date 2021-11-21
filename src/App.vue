@@ -1,8 +1,7 @@
 <template>
-
-    <!-- <img src="@/assets/background_V2.svg" alt="" class="bg-img" /> -->
-    <div id="app">
-<!--       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- <img src="@/assets/background_V2.svg" alt="" class="bg-img" /> -->
+  <div id="app">
+    <!--        <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">majstor</a>
         <button
           class="navbar-toggler"
@@ -54,13 +53,28 @@
           </div>
         </div>
       </nav> -->
-        
-      <router-view />
-    </div>
 
+    <router-view />
+  </div>
 </template>
 
-<script></script>
+<script>
+import { getAuth, onAuthStateChanged } from "@/firebase.js";
+import store from "@/store.js";
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = user.uid;
+    store.currentUser = user;
+    // ...
+  } else {
+    store.currentUser = null;
+    // User is signed out
+    // ...
+  }
+});
+export default {};
+</script>
 
 <style scoped>
 * {

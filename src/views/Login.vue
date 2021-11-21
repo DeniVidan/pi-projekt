@@ -2,7 +2,8 @@
   <div>
     <img src="@/assets/background_V2.svg" alt="" class="bg-img" />
     <div class="flex-container">
-      <div class="brand-name"
+      <div
+        class="brand-name"
         style="
           font-family: 'Dancing Script', cursive;
           font-size: 70px;
@@ -16,11 +17,11 @@
         <h2>Prijava na majstor</h2>
         <form>
           <div class="user-box">
-            <input type="text" name="" required="" />
+            <input type="text" name="" required="" v-model="mail" />
             <label>E-pošta</label>
           </div>
           <div class="user-box">
-            <input type="password" name="" required="" />
+            <input type="password" name="" required="" v-model="lozinka" />
             <label>Lozinka</label>
           </div>
           <div class="row1">
@@ -31,7 +32,9 @@
               >
             </div>
             <div class="col-sm-5">
-              <a href="#" class="button"> Prijava </a>
+              <a href="#" class="button" @click.prevent="prijavi_korisnika">
+                Prijava
+              </a>
             </div>
           </div>
         </form>
@@ -41,7 +44,34 @@
 </template>
 
 <script>
-export default {};
+import { getAuth, signInWithEmailAndPassword } from "@/firebase";
+export default {
+  name: "login",
+  data() {
+    return {
+      ime: "",
+      mail: "",
+      lozinka: "",
+      user: null,
+    };
+  },
+  methods: {
+    prijavi_korisnika() {
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, this.mail, this.lozinka)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log("PRIJAVIO SI SE");
+          this.$router.replace({ name: "Home" });
+          // ...
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -62,8 +92,8 @@ div {
 .col-sm-5 {
   margin: auto;
 }
-.brand-name{
-  font-family: 'Dancing Script', cursive;
+.brand-name {
+  font-family: "Dancing Script", cursive;
   font-size: 70px;
   color: black;
   margin-top: 50px;
@@ -183,7 +213,7 @@ body {
     width: 100%;
     border-radius: 0px;
   }
-  .brand-name{
+  .brand-name {
     margin: 0;
     top: 0;
   }

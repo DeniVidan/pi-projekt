@@ -17,19 +17,19 @@
         <h2>Kreirajte račun</h2>
         <form>
           <div class="user-box">
-            <input type="text" name="" required="" />
+            <input type="text" name="" required="" v-model="ime" />
             <label>Ime i prezime</label>
           </div>
           <div class="user-box">
-            <input type="text" name="" required="" />
+            <input type="text" name="" required="" v-model="mail" />
             <label>E-pošta</label>
           </div>
           <div class="user-box">
-            <input type="password" name="" required="" />
+            <input type="password" name="" required="" v-model="lozinka1" />
             <label>Lozinka</label>
           </div>
           <div class="user-box">
-            <input type="password" name="" required="" />
+            <input type="password" name="" required="" v-model="lozinka2" />
             <label>Potvrdite lozinku</label>
           </div>
           <div class="row1">
@@ -38,7 +38,9 @@
               <a href="/login" style="text-decoration: underline">Prijavi se</a>
             </div>
             <div class="col-md-6">
-              <a href="#" class="button"> Registriraj se </a>
+              <a href="#" class="button" @click.prevent="registriraj_korisnika">
+                Registriraj se
+              </a>
             </div>
           </div>
         </form>
@@ -48,7 +50,55 @@
 </template>
 
 <script>
-export default {};
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "@/firebase";
+export default {
+  name: "signup",
+  data() {
+    return {
+      ime: "",
+      mail: "",
+      lozinka1: "",
+      lozinka2: "",
+      user: null,
+      eror: "",
+    };
+  },
+  methods: {
+    registriraj_korisnika() {
+      if (this.lozinka1 !== this.lozinka2)
+        return (this.eror = "Lozinke se ne podudaraju");
+      const auth = getAuth();
+      createUserWithEmailAndPassword(auth, this.mail, this.lozinka1)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          updateProfile(auth.currentUser, {
+            displayName: this.ime,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              // Profile updated!
+              // ...
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            });
+          // ...
+          this.$router.push({ name: "Home" });
+        })
+
+        .catch((error) => {
+          console.log(error);
+          // ..
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>

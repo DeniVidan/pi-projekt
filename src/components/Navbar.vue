@@ -14,37 +14,29 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <form class="form-inline my-2 my-lg-0">
-        <input
-          class="form-control mr-sm-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-          Search
-        </button>
-      </form>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Vrt</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Na kući</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">Po kući</a>
-        </li>
-      </ul>
+      <ul class="navbar-nav mr-auto"></ul>
 
       <div class="account">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/login">log in</a>
+            <a class="nav-link" href="/login" v-if="this.$store.currentUser"
+              >Moj profil</a
+            >
+          </li>
+          <li class="nav-item" v-if="this.$store.currentUser">
+            <a class="nav-link" href="#" @click.prevent="odjavi_korisnika()"
+              >Odjava</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/signup">sign up</a>
+            <a class="nav-link" href="/login" v-if="!this.$store.currentUser"
+              >Prijava</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup" v-if="!this.$store.currentUser"
+              >Registracija</a
+            >
           </li>
         </ul>
       </div>
@@ -53,16 +45,32 @@
 </template>
 
 <script>
+import store from "@/store.js";
+import { getAuth, signOut } from "@/firebase.js";
 export default {
-    name: "Navbar",
-}
+  name: "Navbar",
+  methods: {
+    odjavi_korisnika() {
+      const auth = getAuth();
+      signOut(auth)
+        .then(() => {
+          // Sign-out successful.
+          store.currentUser = null;
+          this.$router.push({ name: "Login" });
+        })
+        .catch((error) => {
+          // An error happened.
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>
 a {
   text-decoration: none;
-  font-weight: bold;
-  color: #2c3e50;
+
+  color: #ffcd94 !important;
 }
 #nav a.router-link-exact-active {
   text-decoration: none;
@@ -72,7 +80,7 @@ a {
 
 .navbar {
   position: fixed;
-  background-color: #cccccc !important;
+  background-color: #383838 !important;
   padding: 0;
   width: 100%;
 }
