@@ -89,7 +89,7 @@ export default {
               // ...
             });
           // ...
-          this.$router.push({ name: "Home" });
+          this.$router.replace({ name: "Home" });
         })
 
         .catch((error) => {

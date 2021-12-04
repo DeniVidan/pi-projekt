@@ -64,6 +64,7 @@ import store from "@/store.js";
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
+    console.log("++++" + user.email)
     const uid = user.uid;
     store.currentUser = user;
     // ...
@@ -73,7 +74,14 @@ onAuthStateChanged(auth, (user) => {
     // ...
   }
 });
-export default {};
+export default {
+  name: 'app',
+  data(){
+    return {
+      store,
+    };
+  }
+};
 </script>
 
 <style scoped>
