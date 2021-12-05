@@ -88,7 +88,6 @@ export default {
 * {
   overflow-x: hidden;
 }
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
