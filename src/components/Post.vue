@@ -13,10 +13,14 @@
     </div>
 
     <div class="row post-info">
-      <div class="col-md-3 like-box">
-          <i class="far fa-thumbs-up"></i>
+      <div class="col-md-2 like-box mt-3">
+        <img
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMGMtNC4xOTggMC04IDMuNDAzLTggNy42MDIgMCA2LjI0MyA2LjM3NyA2LjkwMyA4IDE2LjM5OCAxLjYyMy05LjQ5NSA4LTEwLjE1NSA4LTE2LjM5OCAwLTQuMTk5LTMuODAxLTcuNjAyLTgtNy42MDJ6bTAgMTFjLTEuNjU3IDAtMy0xLjM0My0zLTNzMS4zNDItMyAzLTMgMyAxLjM0MyAzIDMtMS4zNDMgMy0zIDN6Ii8+PC9zdmc+"
+        />Rovinj
+        <br />
+        <i class="far fa-thumbs-up mt-3"></i>
       </div>
-      <div class="col-md-9 content-box">
+      <div class="col-md-10 content-box">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, eos
           sunt omnis molestias debitis officia deserunt facere dolorum. Iusto,
@@ -25,10 +29,9 @@
       </div>
     </div>
 
-    <div class="more-info">
-        <a href="#" class="">Više</a>
+    <div class="row more-info">
+      <a href="">Više</a>
     </div>
-
   </div>
 </template>
 
@@ -50,7 +53,9 @@ export default {
   min-height: 250px;
   border-radius: 10px;
   border: 1px solid rgba(128, 128, 128, 0.514);
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 .row {
   display: flex;
@@ -63,8 +68,7 @@ export default {
   margin: auto;
 }
 
-.col-md-4.image-box {
-  float: left;
+.col-md-3.image-box {
   margin: 0px 0px 0px 0px !important;
 }
 .image {
@@ -73,15 +77,16 @@ export default {
   float: left;
   transform: translate(40%, 30%);
 }
-.name > p {
+.col-md-8.name > p {
   float: left;
   transform: translate(0%, 210%);
   font-weight: bold;
 }
-.content-box > p {
+.col-md-10.content-box > p {
   text-align: left;
   margin: auto;
   margin-right: 50px;
+  margin-left: 50px;
 }
 .post-info.row {
   width: 100%;
@@ -96,44 +101,88 @@ export default {
 .col-md-2.image-box {
   width: 30px;
 }
-input {
-  width: 95%;
-  border-radius: 20px;
-  border: 1px solid black;
-  height: 40px;
-  text-indent: 10px;
+.col-md-2.like-box {
+  align-self: center;
 }
-.col-md-2.button{
-    align-self: center;
+.more-info {
+  margin-top: 30px !important;
+  justify-content: right;
 }
-.more-info{
-    margin-top: 30px !important;
+.more-info > a {
+  text-decoration: none;
+  color: black;
+  float: right;
+  margin-right: 50px;
+  background-color: rgb(172, 172, 172);
+  padding: 3px 25px 3px 25px;
+  border-radius: 5px;
+  transition: transform 100ms;
 }
-.more-info>a{
-    text-decoration: none;
-    color: black;
-    float: right;
-    margin-right: 50px;
-    background-color: rgb(172, 172, 172);
-    padding: 3px 25px 3px 25px;
-    border-radius: 5px;
+.more-info > a:hover {
+  transform: scale(1.1);
 }
 @media only screen and (max-width: 1000px) {
-    .box{
-        width: 100%;
-    }
-    .col-md-2.button{
-        width: 20px;
-    }
-    .col-md-3.like-box{
-        width: 150px;
-    }
-    .col-md-3.image-box{
-        width: 200px;
-    }
-    .col-md-1.close-icon{
-        width: 20px;
-        margin-right: 15px;
-    }
+  .box {
+    width: 100%;
+    border-radius: 0px;
+    border-bottom: transparent;
+    border-right: transparent;
+    border-left: transparent;
+  }
+  .col-md-2.like-box {
+    width: 150px;
+  }
+  .col-md-3.image-box {
+    width: 200px;
+  }
+  .col-md-1.close-icon {
+    width: 20px;
+    margin-right: 15px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .personal-info.row {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .col-md-8.name > p {
+    float: none;
+    transform: translate(0%, 150%);
+    font-weight: bold;
+  }
+  .image {
+    width: 80px;
+    border-radius: 40px;
+    float: none;
+    transform: translate(0%, 30%);
+  }
+  .col-md-3.image-box {
+    width: 100%;
+  }
+  .post-info.row {
+    margin-top: 50px;
+    flex-direction: column-reverse;
+  }
+  .col-md-10.content-box > p {
+    text-align: left;
+    margin: auto;
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+  .col-md-2.like-box {
+    margin: auto;
+  }
+  .more-info {
+    margin-top: 30px !important;
+    justify-content: center;
+    padding-bottom: 0px;
+  }
+  .more-info > a {
+    margin-right: 0px;
+  }
+
+  .box {
+    padding-bottom: 0px;
+  }
 }
 </style>

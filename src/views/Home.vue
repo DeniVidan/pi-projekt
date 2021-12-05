@@ -1,8 +1,18 @@
 <template>
   <div class="home">
-    <Navbar style="z-index: 2;" />
+    <Navbar style="z-index: 2" />
     <div class="flex-container">
-      <Post style="z-index: 1;" />
+      <div class="row">
+        <div class="col-sm-3">
+          <NavbarOptions />
+        </div>
+        <div class="col-sm-9">
+          <AddPostButton />
+          <Post style="z-index: 1" />
+          <Post style="z-index: 1" />
+          <Post style="z-index: 1" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -12,6 +22,10 @@
 import HelloWorld from "@/components/HelloWorld.vue";
 import Navbar from "@/components/Navbar.vue";
 import Post from "@/components/Post.vue";
+import AddPostButton from "@/components/AddPostButton.vue";
+import NavbarOptions from "@/components/NavbarOptions.vue";
+
+
 
 export default {
   name: "Home",
@@ -19,19 +33,14 @@ export default {
     HelloWorld,
     Navbar,
     Post,
+    AddPostButton,
+    NavbarOptions,
   },
 };
 </script>
 
 <style scoped>
-body{
-  background-color: #920000 !important;
-}
-.home{
-    background-color: #E5E5E5 !important;
-}
-.flex-container{
-  margin-top: 150px;
-  height: 100vh;
+.flex-container {
+  margin-top: 100px;
 }
 </style>

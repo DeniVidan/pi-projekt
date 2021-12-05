@@ -10,7 +10,7 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
-      <span class="navbar-toggler-icon"></span>
+      <i class="fas fa-bars" style="color: #ffcd94;"></i>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -114,5 +114,8 @@ form {
 }
 .navbar-toggler {
   border-color: transparent !important;
+}
+.navbar-toggler-icon{
+  color: #ffcd94;
 }
 </style>
