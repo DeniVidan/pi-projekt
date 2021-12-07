@@ -61,11 +61,11 @@
 <script>
 import { getAuth, onAuthStateChanged } from "@/firebase.js";
 import store from "@/store.js";
+
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log("++++" + user.email)
-    const uid = user.uid;
+    console.log("++++" + user.email);
     store.currentUser = user;
     // ...
   } else {
@@ -75,12 +75,12 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 export default {
-  name: 'app',
-  data(){
+  name: "app",
+  data() {
     return {
       store,
     };
-  }
+  },
 };
 </script>
 

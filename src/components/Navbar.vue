@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">majstor</a>
+    <a class="navbar-brand" href="/">majstor</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -10,7 +10,7 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
-      <i class="fas fa-bars" style="color: #ffcd94;"></i>
+      <i class="fas fa-bars" style="color: #ffcd94"></i>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -19,7 +19,7 @@
       <div class="account">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/login" v-if="this.$store.currentUser"
+            <a class="nav-link" href="/profile" v-if="this.$store.currentUser"
               >Moj profil</a
             >
           </li>
@@ -115,7 +115,7 @@ form {
 .navbar-toggler {
   border-color: transparent !important;
 }
-.navbar-toggler-icon{
+.navbar-toggler-icon {
   color: #ffcd94;
 }
 </style>
