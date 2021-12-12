@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">majstor</a>
     <button
       class="navbar-toggler"
@@ -16,26 +16,72 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto"></ul>
 
+      <div class="CollapsedNavbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <router-link
+              class="nav-link"
+              class-active="active"
+              to="/"
+              exact
+              v-if="this.$store.currentUser"
+              >Naslovnica</router-link
+            >
+          </li>
+
+          <li class="nav-item">
+            <router-link
+              class="nav-link"
+              class-active="active"
+              to="/favorite"
+              exact
+              v-if="this.$store.currentUser"
+              >Favoriti</router-link
+            >
+          </li>
+        </ul>
+      </div>
+
       <div class="account">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/profile" v-if="this.$store.currentUser"
-              >Moj profil</a
+            <router-link
+              class="nav-link"
+              class-active="active"
+              to="/profile"
+              exact
+              v-if="this.$store.currentUser"
+              >Moj profil</router-link
             >
           </li>
           <li class="nav-item" v-if="this.$store.currentUser">
-            <a class="nav-link" href="#" @click.prevent="odjavi_korisnika()"
-              >Odjava</a
+            <router-link
+              class="nav-link"
+              class-active="active"
+              to="/login"
+              exact
+              @click.prevent="odjavi_korisnika()"
+              >Odjava</router-link
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/login" v-if="!this.$store.currentUser"
-              >Prijava</a
+            <router-link
+              class="nav-link"
+              class-active="active"
+              to="/login"
+              exact
+              v-if="!this.$store.currentUser"
+              >Prijava</router-link
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/signup" v-if="!this.$store.currentUser"
-              >Registracija</a
+            <router-link
+              class="nav-link"
+              class-active="active"
+              to="/signup"
+              exact
+              v-if="!this.$store.currentUser"
+              >Registracija</router-link
             >
           </li>
         </ul>
@@ -75,9 +121,13 @@ a {
 #nav a.router-link-exact-active {
   text-decoration: none;
   font-weight: bold;
-  color: #467db5;
+  color: #383838 !important;
+  background-color: #ffcd94;
+  border-radius: 5px;
 }
-
+.CollapsedNavbar{
+  display: none;
+}
 .navbar {
   position: fixed;
   background-color: #383838 !important;
@@ -117,5 +167,10 @@ form {
 }
 .navbar-toggler-icon {
   color: #ffcd94;
+}
+@media only screen and (max-width: 991px) {
+  .CollapsedNavbar{
+    display: block;
+  }
 }
 </style>

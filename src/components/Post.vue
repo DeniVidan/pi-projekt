@@ -8,7 +8,7 @@
         <p>Deni Vidan</p>
       </div>
       <div class="col-md-1 close-icon">
-        <i class="far fa-star" style="font-size: 20px; margin-top: 15px"></i>
+        <i class="far fa-star" style="font-size: 20px; margin-top: 15px; margin-right: 50px !important;"></i>
       </div>
     </div>
 

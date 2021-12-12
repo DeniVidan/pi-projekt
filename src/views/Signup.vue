@@ -3,6 +3,7 @@
     <img src="@/assets/background_V2.svg" alt="" class="bg-img" />
     <div class="flex-container">
       <div
+      class="brand-name"
         style="
           font-family: 'Dancing Script', cursive;
           font-size: 70px;
@@ -232,6 +233,12 @@ div {
   .login-box {
     width: 100%;
     border-radius: 0px;
+  }
+  .brand-name{
+    margin-top: 0px;
+  }
+  .flex-container{
+    margin-top: 0px;
   }
 }
 </style>

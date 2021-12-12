@@ -17,11 +17,11 @@
         <h2>Prijava na majstor</h2>
         <form>
           <div class="user-box">
-            <input type="text" name="" required="" v-model="mail" />
+            <input type="text" name="email" required="" v-model="mail" />
             <label>E-pošta</label>
           </div>
           <div class="user-box">
-            <input type="password" name="" required="" v-model="lozinka" />
+            <input type="password" name="password" required="" v-model="lozinka" />
             <label>Lozinka</label>
           </div>
           <div class="row1">
@@ -214,8 +214,11 @@ body {
     border-radius: 0px;
   }
   .brand-name {
-    margin: 0;
+    margin-top: 60px !important;
     top: 0;
+  }
+  .flex-container{
+    margin-top: 0px;
   }
 }
 </style>

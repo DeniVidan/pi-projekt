@@ -4,7 +4,7 @@
     <div class="flex-container">
       <div class="row">
         <div class="col-sm-3">
-          <NavbarOptions />
+          <NavbarOptions class="sideNavbar"/>
         </div>
         <div class="col-sm-9">
           <AddPostButton />
@@ -39,5 +39,17 @@ export default {
 <style scoped>
 .flex-container {
   margin-top: 100px;
+}
+@media only screen and (max-width: 991px) {
+  .row{
+    flex-direction: column;
+    width: 140% !important;
+  }
+}
+@media only screen and (max-width: 577px) {
+  .row{
+    flex-direction: column;
+    width: 105% !important;
+  }
 }
 </style>
