@@ -40,6 +40,9 @@ export default {
 .flex-container {
   margin-top: 100px;
 }
+.col-sm-9{
+  padding: 0;
+}
 @media only screen and (max-width: 991px) {
   .row{
     flex-direction: column;

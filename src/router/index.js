@@ -38,6 +38,11 @@ const routes = [
     name: "Favorite",
     component: () => import("../views/Favorite.vue"),
   },
+  {
+    path: "/profileedit",
+    name: "ProfileEdit",
+    component: () => import("../views/ProfileEdit.vue"),
+  },
 ];
 
 const router = new VueRouter({

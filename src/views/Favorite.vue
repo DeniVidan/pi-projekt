@@ -1,6 +1,6 @@
 !
 <template>
-  <div class="home">
+  <div class="profile">
     <Navbar style="z-index: 2" />
     <div class="flex-container">
       <div class="row">
@@ -20,7 +20,7 @@ import Navbar from "@/components/Navbar.vue";
 import NavbarOptions from "@/components/NavbarOptions.vue";
 
 export default {
-  name: "Home",
+  name: "favourite",
   components: {
     Navbar,
     NavbarOptions,
@@ -28,7 +28,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .flex-container {
   margin-top: 100px;
 }

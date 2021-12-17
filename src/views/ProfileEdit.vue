@@ -28,7 +28,7 @@
                 exact
                 >Uredi profil</router-link
               >
-              <UserPosts />
+              <EditProfile />
             </div>
           </div>
         </div>
@@ -42,14 +42,14 @@
 
 import Navbar from "@/components/Navbar.vue";
 import NavbarOptions from "@/components/NavbarOptions.vue";
-import UserPosts from "@/components/UserPosts.vue";
+import EditProfile from "@/components/EditProfile.vue";
 
 export default {
-  name: "profile",
+  name: "ProfileEdit",
   components: {
     Navbar,
     NavbarOptions,
-    UserPosts,
+    EditProfile,
   },
 };
 </script>

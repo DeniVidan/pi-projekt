@@ -4,11 +4,11 @@
       <div class="col-md-3 image-box">
         <img src="@/assets/profilepic.jpg" alt="" class="image" />
       </div>
-      <div class="col-md-8 name">
+      <div class="col-md-7 name">
         <p>Deni Vidan</p>
       </div>
-      <div class="col-md-1 close-icon">
-        <i class="far fa-star" style="font-size: 20px; margin-top: 15px; margin-right: 50px !important;"></i>
+      <div class="col-md-2 favourite-icon">
+        <i class="far fa-star" style="font-size: 20px; margin-top: 15px;"></i>
       </div>
     </div>
 
@@ -49,7 +49,7 @@ export default {
 
 .box {
   margin: auto;
-  width: 830px;
+  max-width: 830px;
   min-height: 250px;
   border-radius: 10px;
   border: 1px solid rgba(128, 128, 128, 0.514);
@@ -77,7 +77,7 @@ export default {
   float: left;
   transform: translate(40%, 30%);
 }
-.col-md-8.name > p {
+.col-md-7.name > p {
   float: left;
   transform: translate(0%, 210%);
   font-weight: bold;
@@ -135,17 +135,19 @@ export default {
   .col-md-3.image-box {
     width: 200px;
   }
-  .col-md-1.close-icon {
+  .favourite-icon {
     width: 20px;
     margin-right: 15px;
   }
+  
 }
 @media only screen and (max-width: 600px) {
   .personal-info.row {
     flex-direction: column;
     flex-wrap: wrap;
+    width: 85%;
   }
-  .col-md-8.name > p {
+  .col-md-7.name > p {
     float: none;
     transform: translate(0%, 150%);
     font-weight: bold;

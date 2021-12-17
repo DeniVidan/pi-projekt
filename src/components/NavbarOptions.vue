@@ -1,13 +1,23 @@
 <template>
   <div class="row NavbarOptions">
     <router-link class="item" class-active="active" to="/" exact
-      ><i class="fas fa-home mr-5"></i> Naslovnica</router-link
+      ><i class="fas fa-home"></i> Naslovnica</router-link
     >
-    <router-link class="item" class-active="active" to="/profile" exact v-if="this.$store.currentUser"
-      ><i class="fas fa-user-circle mr-5"></i> Moj profil</router-link
+    <router-link
+      class="item"
+      class-active="active"
+      to="/profile"
+      exact
+      v-if="this.$store.currentUser"
+      ><i class="fas fa-user-circle"></i> Moj profil</router-link
     >
-    <router-link class="item" class-active="active" to="/favorite" exact v-if="this.$store.currentUser"
-      ><i class="fas fa-star mr-5"></i>Favoriti</router-link
+    <router-link
+      class="item"
+      class-active="active"
+      to="/favorite"
+      exact
+      v-if="this.$store.currentUser"
+      ><i class="fas fa-star"></i>Favoriti</router-link
     >
   </div>
 </template>
@@ -25,6 +35,9 @@ export default {
 .NavbarOptions {
   margin-top: 50px;
 }
+.fas {
+  margin-right: 45px;
+}
 a.router-link-exact-active {
   color: #383838 !important; /* mediumorchid */ /* goldenrod */
   border: 1px solid rgba(0, 0, 0, 0);
@@ -33,7 +46,7 @@ a.router-link-exact-active {
   background-color: #ffcd94;
 }
 .item {
-  width: 300px;
+  max-width: 270px;
   font-size: 25px;
   text-decoration: none;
   text-align: start;
@@ -48,17 +61,26 @@ a.router-link-exact-active {
   flex-direction: column;
   flex-wrap: wrap;
 }
-.isActive.item {
-  background-color: #ffcd94;
-  color: black;
-  box-shadow: 2px 2px 5px grey;
-}
-.isActive > i {
-  color: #383838;
-}
+
 @media only screen and (max-width: 991px) {
-  .NavbarOptions{
+  .NavbarOptions {
     display: none;
+  }
+}
+@media only screen and (max-width: 1391px) {
+  .item {
+    padding: 5px 10px 5px 10px;
+  }
+  .fas {
+    margin-right: 25px;
+  }
+}
+@media only screen and (max-width: 1080px) {
+  .item {
+    padding: 5px 10px 5px 10px;
+  }
+  .fas {
+    margin-right: 3px;
   }
 }
 </style>
