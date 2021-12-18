@@ -65,7 +65,7 @@ import store from "@/store.js";
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log("++++" + user.email);
+    console.log("User: " + user.email);
     store.currentUser = user;
     // ...
   } else {

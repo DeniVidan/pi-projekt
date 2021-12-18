@@ -10,8 +10,8 @@
         <div class="col-sm-9">
           <div class="row userSettings">
             <div class="col-lg-6 userImage">
-              <img src="@/assets/profilepic.jpg" class="image" alt="" />
-              <h2 class="mt-4">Deni Vidan</h2>
+              <img :src="photoURL" class="image" alt="" />
+              <h2 class="mt-4">{{ name }}</h2>
             </div>
             <div class="col-lg-6 userInfo">
               <router-link
@@ -43,9 +43,16 @@
 import Navbar from "@/components/Navbar.vue";
 import NavbarOptions from "@/components/NavbarOptions.vue";
 import UserPosts from "@/components/UserPosts.vue";
+import store from "@/store";
 
 export default {
   name: "profile",
+  data() {
+    return {
+      name: store.currentUser.displayName,
+      photoURL: store.currentUser.photoURL,
+    };
+  },
   components: {
     Navbar,
     NavbarOptions,
@@ -62,11 +69,11 @@ export default {
 .flex-container {
   margin-top: 100px;
 }
-a{
-    padding: 0px 30px;
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
+a {
+  padding: 0px 30px;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
 }
 a.router-link-exact-active {
   text-decoration: underline;
@@ -91,7 +98,10 @@ a.router-link-exact-active {
 }
 .image {
   width: 16rem;
+  height: 16rem;
   border-radius: 50%;
+  border: 1px solid gray;
+  padding: 5px;
 }
 
 .userInfo {

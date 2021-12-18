@@ -21,7 +21,12 @@
             <label>E-pošta</label>
           </div>
           <div class="user-box">
-            <input type="password" name="password" required="" v-model="lozinka" />
+            <input
+              type="password"
+              name="password"
+              required=""
+              v-model="lozinka"
+            />
             <label>Lozinka</label>
           </div>
           <div class="row1">
@@ -217,7 +222,7 @@ body {
     margin-top: 60px !important;
     top: 0;
   }
-  .flex-container{
+  .flex-container {
     margin-top: 0px;
   }
 }

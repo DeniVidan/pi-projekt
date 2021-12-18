@@ -3,7 +3,7 @@
     <img src="@/assets/background_V2.svg" alt="" class="bg-img" />
     <div class="flex-container">
       <div
-      class="brand-name"
+        class="brand-name"
         style="
           font-family: 'Dancing Script', cursive;
           font-size: 70px;
@@ -79,15 +79,15 @@ export default {
           const user = userCredential.user;
           updateProfile(auth.currentUser, {
             displayName: this.ime,
-            photoURL: "https://example.com/jane-q-user/profile.jpg",
+            photoURL:
+              "https://www.personality-insights.com/wp-content/uploads/2017/12/default-profile-pic-e1513291410505.jpg",
           })
             .then(() => {
               // Profile updated!
               // ...
             })
             .catch((error) => {
-              // An error occurred
-              // ...
+              console.log(error);
             });
           // ...
           this.$router.replace({ name: "Home" });
@@ -234,10 +234,10 @@ div {
     width: 100%;
     border-radius: 0px;
   }
-  .brand-name{
+  .brand-name {
     margin-top: 0px;
   }
-  .flex-container{
+  .flex-container {
     margin-top: 0px;
   }
 }

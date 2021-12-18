@@ -55,13 +55,14 @@
             >
           </li>
           <li class="nav-item" v-if="this.$store.currentUser">
-            <router-link
+            <a
+              href="#"
               class="nav-link"
               class-active="active"
               to="/login"
               exact
               @click.prevent="odjavi_korisnika()"
-              >Odjava</router-link
+              >Odjava</a
             >
           </li>
           <li class="nav-item">
@@ -101,11 +102,12 @@ export default {
       signOut(auth)
         .then(() => {
           // Sign-out successful.
+          console.log("Odjavio si se");
           store.currentUser = null;
           this.$router.push({ name: "Login" });
         })
         .catch((error) => {
-          // An error happened.
+          console.log(error);
         });
     },
   },
@@ -125,7 +127,7 @@ a {
   background-color: #ffcd94;
   border-radius: 5px;
 }
-.CollapsedNavbar{
+.CollapsedNavbar {
   display: none;
 }
 .navbar {
@@ -169,7 +171,7 @@ form {
   color: #ffcd94;
 }
 @media only screen and (max-width: 991px) {
-  .CollapsedNavbar{
+  .CollapsedNavbar {
     display: block;
   }
 }
