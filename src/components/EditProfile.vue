@@ -60,6 +60,7 @@ export default {
       lozinka2: "",
     };
   },
+
   methods: {
     async profilePicture() {
       console.log("RADIM");
@@ -69,7 +70,7 @@ export default {
       if (this.image) {
         await uploadBytes(storageRef, this.image);
         const downloadUrl = await getDownloadURL(storageRef);
-        const oldImage = ref(storage, this.$store.currentUser.photoURL);
+
         try {
           await updateProfile(getAuth().currentUser, { photoURL: downloadUrl });
 

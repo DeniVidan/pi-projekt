@@ -4,13 +4,19 @@
     <div class="flex-container">
       <div class="row">
         <div class="col-sm-3">
-          <NavbarOptions class="sideNavbar"/>
+          <NavbarOptions class="sideNavbar" />
         </div>
         <div class="col-sm-9">
           <AddPostButton />
-          <Post style="z-index: 1" />
-          <Post style="z-index: 1" />
-          <Post style="z-index: 1" />
+          <Post
+            style="z-index: 1"
+            v-for="Objava in Objave"
+            :key="Objava.id"
+            :opis="Objava.opis"
+            :ime="Objava.korisnik.ime"
+            :lokacija="Objava.lokacija"
+            :slika="Objava.korisnik.imageURL"
+          />
         </div>
       </div>
     </div>
@@ -24,9 +30,31 @@ import Navbar from "@/components/Navbar.vue";
 import Post from "@/components/Post.vue";
 import AddPostButton from "@/components/AddPostButton.vue";
 import NavbarOptions from "@/components/NavbarOptions.vue";
+import { collection, getDocs, db } from "@/firebase";
 
 export default {
   name: "Home",
+  data() {
+    return {
+      Objave: [],
+    };
+  },
+  mounted() {
+    this.getPosts();
+  },
+  methods: {
+    async getPosts() {
+      console.log("Dohvačam postove iz Firebase");
+      const querySnapshot = await getDocs(collection(db, "objave"));
+      const Objave = [];
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        //console.log(doc.id, " => ", doc.data());
+        Objave.push({ id: doc.id, ...doc.data() });
+      });
+      this.Objave = Objave;
+    },
+  },
   components: {
     Navbar,
     Post,
@@ -40,17 +68,17 @@ export default {
 .flex-container {
   margin-top: 100px;
 }
-.col-sm-9{
+.col-sm-9 {
   padding: 0;
 }
 @media only screen and (max-width: 991px) {
-  .row{
+  .row {
     flex-direction: column;
     width: 140% !important;
   }
 }
 @media only screen and (max-width: 577px) {
-  .row{
+  .row {
     flex-direction: column;
     width: 105% !important;
   }

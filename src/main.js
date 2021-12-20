@@ -3,8 +3,12 @@ import App from "./App.vue";
 import router from "./router";
 import store from "@/store";
 import { getAuth, onAuthStateChanged } from "@/firebase.js";
+import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
 Vue.config.productionTip = false;
+
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
 
 let app = null;
 const auth = getAuth();

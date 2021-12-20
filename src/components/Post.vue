@@ -2,13 +2,13 @@
   <div class="box">
     <div class="row personal-info">
       <div class="col-md-3 image-box">
-        <img src="@/assets/profilepic.jpg" alt="" class="image" />
+        <img :src="slika" alt="" class="image" />
       </div>
       <div class="col-md-7 name">
-        <p>Deni Vidan</p>
+        <p>{{ ime }}</p>
       </div>
       <div class="col-md-2 favourite-icon">
-        <i class="far fa-star" style="font-size: 20px; margin-top: 15px;"></i>
+        <i class="far fa-star" style="font-size: 20px; margin-top: 15px"></i>
       </div>
     </div>
 
@@ -16,15 +16,13 @@
       <div class="col-md-2 like-box mt-3">
         <img
           src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMGMtNC4xOTggMC04IDMuNDAzLTggNy42MDIgMCA2LjI0MyA2LjM3NyA2LjkwMyA4IDE2LjM5OCAxLjYyMy05LjQ5NSA4LTEwLjE1NSA4LTE2LjM5OCAwLTQuMTk5LTMuODAxLTcuNjAyLTgtNy42MDJ6bTAgMTFjLTEuNjU3IDAtMy0xLjM0My0zLTNzMS4zNDItMyAzLTMgMyAxLjM0MyAzIDMtMS4zNDMgMy0zIDN6Ii8+PC9zdmc+"
-        />Rovinj
+        />{{ lokacija }}
         <br />
         <i class="far fa-thumbs-up mt-3"></i>
       </div>
       <div class="col-md-10 content-box">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, eos
-          sunt omnis molestias debitis officia deserunt facere dolorum. Iusto,
-          fugit!
+          {{ opis }}
         </p>
       </div>
     </div>
@@ -38,6 +36,16 @@
 <script>
 export default {
   name: "Post",
+
+  data() {
+    return {};
+  },
+  props: {
+    opis: String,
+    ime: String,
+    lokacija: String,
+    slika: String,
+  },
 };
 </script>
 
@@ -73,6 +81,7 @@ export default {
 }
 .image {
   width: 80px;
+  height: 80px;
   border-radius: 40px;
   float: left;
   transform: translate(40%, 30%);
@@ -139,7 +148,6 @@ export default {
     width: 20px;
     margin-right: 15px;
   }
-  
 }
 @media only screen and (max-width: 600px) {
   .personal-info.row {
