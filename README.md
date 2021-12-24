@@ -7,7 +7,7 @@ Ova aplikacija osmišljena je za ponudu i potražnju jednokratnih poslova OKOLO,
 ### Autori i zaduženja
 
 - **Dominik Ružić** (druzic@unipu.hr) - Uglavnom Backend
-- **Deni Vidan** (dvidan@unipu.hr) -
+- **Deni Vidan** (dvidan@unipu.hr) - Uglavnom Frontend
 
 ### Prototip aplikacije
 
