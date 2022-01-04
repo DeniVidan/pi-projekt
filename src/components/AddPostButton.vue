@@ -82,6 +82,7 @@ export default {
   methods:{
     async newPost() {
       console.log("Postam");
+      this.isSending = true;
       const newObjava={
        tip : this.newTip,
        vrsta : this.newVrsta,
@@ -89,6 +90,7 @@ export default {
        lokacija : this.newLokacija,
        cijena : this.newCijena,
        time: Date.now(),
+       uid: store.currentUser.uid,
        korisnik:{
          id: store.currentUser.uid,
          ime: store.currentUser.displayName,
@@ -96,12 +98,13 @@ export default {
        }
        }
       try{
-        this.isSending = true;
+        
       const docRef = await addDoc(collection(db, "objave"), newObjava);
   console.log("Spremljeno");
 } catch (e) {
   console.error("Greška kod dodavanja oglasa ", e);
 }
+this.$router.go();
     },
   }
 };

@@ -1,27 +1,55 @@
 <template>
   <div class="UserPosts">
-    
     <div class="post">
-      <Post />
-      <Post />
-      <Post />
+      <Post
+        v-for="Objava in Objave"
+        :key="Objava.id"
+        :opis="Objava.opis"
+        :ime="Objava.korisnik.ime"
+        :lokacija="Objava.lokacija"
+        :slika="Objava.korisnik.imageURL"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import Post from "@/components/Post.vue";
+import { collection, getDocs, db, query, where } from "@/firebase";
+import store from "@/store.js";
 
 export default {
   name: "UserPosts",
+  data() {
+    return {
+      id: store.currentUser.uid,
+      Objave: [],
+    };
+  },
+  mounted() {
+    this.getMyPosts();
+  },
+  methods: {
+    async getMyPosts() {
+      console.log("Dohvačam tvoje postove");
+      const q = query(collection(db, "objave"), where("uid", "==", this.id));
+      const Objave = [];
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        Objave.push({ id: doc.id, ...doc.data() });
+      });
+      this.Objave = Objave;
+    },
+  },
   components: {
     Post,
-  }
+  },
 };
 </script>
 
 <style scoped>
-.post{
+.post {
   margin-top: 40px;
 }
 </style>

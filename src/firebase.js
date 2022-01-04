@@ -7,6 +7,8 @@ import {
   addDoc,
   collection,
   getDocs,
+  query,
+  where,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -57,4 +59,6 @@ export {
   updatePassword,
   collection,
   getDocs,
+  query,
+  where,
 };

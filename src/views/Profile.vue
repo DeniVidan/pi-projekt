@@ -53,6 +53,7 @@ export default {
       photoURL: store.currentUser.photoURL,
     };
   },
+
   components: {
     Navbar,
     NavbarOptions,
