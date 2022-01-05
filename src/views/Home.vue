@@ -32,12 +32,8 @@ import Navbar from "@/components/Navbar.vue";
 import Post from "@/components/Post.vue";
 import AddPostButton from "@/components/AddPostButton.vue";
 import NavbarOptions from "@/components/NavbarOptions.vue";
-<<<<<<< HEAD
 import Filterr from "@/components/Filterr.vue";
-import { collection, getDocs, db } from "@/firebase";
-=======
-import { collection, query, db, orderBy, getDocs } from "@/firebase";
->>>>>>> 1a8fd18c129d4019aada2886e4b9f55bbde2591f
+import { collection, getDocs, db, query, orderBy } from "@/firebase";
 
 export default {
   name: "Home",

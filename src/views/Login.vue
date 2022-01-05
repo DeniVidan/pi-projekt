@@ -213,6 +213,13 @@ body {
   position: absolute;
   display: block;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 50px #383838 inset !important;
+    -webkit-text-fill-color: white !important;
+}
 @media only screen and (max-width: 600px) {
   .login-box {
     width: 100%;
