@@ -5,9 +5,11 @@
       <div class="row">
         <div class="col-sm-3">
           <NavbarOptions class="sideNavbar" />
+          <Filterr />
         </div>
         <div class="col-sm-9">
           <AddPostButton />
+          <a href="#">filter</a>
           <Post
             style="z-index: 1"
             v-for="Objava in Objave"
@@ -30,6 +32,7 @@ import Navbar from "@/components/Navbar.vue";
 import Post from "@/components/Post.vue";
 import AddPostButton from "@/components/AddPostButton.vue";
 import NavbarOptions from "@/components/NavbarOptions.vue";
+import Filterr from "@/components/Filterr.vue";
 import { collection, getDocs, db } from "@/firebase";
 
 export default {
@@ -60,6 +63,7 @@ export default {
     Post,
     AddPostButton,
     NavbarOptions,
+    Filterr,
   },
 };
 </script>

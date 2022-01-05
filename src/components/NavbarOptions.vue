@@ -1,7 +1,7 @@
 <template>
   <div class="row NavbarOptions">
     <router-link class="item" class-active="active" to="/" exact
-      ><i class="fas fa-home"></i> Naslovnica</router-link
+      ><i class="fas fa-home"></i>Naslovnica</router-link
     >
     <router-link
       class="item"
@@ -9,7 +9,7 @@
       to="/profile"
       exact
       v-if="this.$store.currentUser"
-      ><i class="fas fa-user-circle"></i> Moj profil</router-link
+      ><i class="fas fa-user-circle"></i>Moj profil</router-link
     >
     <router-link
       class="item"
