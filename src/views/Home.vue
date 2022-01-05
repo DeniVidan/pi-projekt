@@ -32,8 +32,12 @@ import Navbar from "@/components/Navbar.vue";
 import Post from "@/components/Post.vue";
 import AddPostButton from "@/components/AddPostButton.vue";
 import NavbarOptions from "@/components/NavbarOptions.vue";
+<<<<<<< HEAD
 import Filterr from "@/components/Filterr.vue";
 import { collection, getDocs, db } from "@/firebase";
+=======
+import { collection, query, db, orderBy, getDocs } from "@/firebase";
+>>>>>>> 1a8fd18c129d4019aada2886e4b9f55bbde2591f
 
 export default {
   name: "Home",
@@ -48,9 +52,13 @@ export default {
   methods: {
     async getPosts() {
       console.log("Dohvačam postove iz Firebase");
-      const querySnapshot = await getDocs(collection(db, "objave"));
+      const querySnapshot = await query(
+        collection(db, "objave"),
+        orderBy("time", "desc")
+      );
+      const objaveDocs = await getDocs(querySnapshot);
       const Objave = [];
-      querySnapshot.forEach((doc) => {
+      objaveDocs.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         //console.log(doc.id, " => ", doc.data());
         Objave.push({ id: doc.id, ...doc.data() });

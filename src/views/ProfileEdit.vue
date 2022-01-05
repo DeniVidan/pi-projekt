@@ -101,6 +101,7 @@ a.router-link-exact-active {
   border-radius: 50%;
   border: 1px solid gray;
   padding: 5px;
+  object-fit: cover;
 }
 
 .userInfo {
