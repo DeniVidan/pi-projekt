@@ -15,7 +15,7 @@
 
 <script>
 import Post from "@/components/Post.vue";
-import { collection, getDocs, db, query, where } from "@/firebase";
+import { collection, getDocs, db, query, where, orderBy } from "@/firebase";
 import store from "@/store.js";
 
 export default {
@@ -32,7 +32,11 @@ export default {
   methods: {
     async getMyPosts() {
       console.log("Dohvačam tvoje postove");
-      const q = query(collection(db, "objave"), where("uid", "==", this.id));
+      const q = query(
+        collection(db, "objave"),
+        where("uid", "==", this.id),
+        orderBy("time", "desc")
+      );
       const Objave = [];
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {

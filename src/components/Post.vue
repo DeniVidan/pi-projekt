@@ -85,6 +85,7 @@ export default {
   border-radius: 40px;
   float: left;
   transform: translate(40%, 30%);
+  object-fit: cover;
 }
 .col-md-7.name > p {
   float: left;
