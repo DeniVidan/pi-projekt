@@ -28,12 +28,30 @@
     </div>
 
     <div class="row more-info">
-      <a href="">Više</a>
+      <button
+        onclick="document.getElementById('id01').style.display='block'"
+        class="w3-button"
+      >
+        Više
+      </button>
+      <div id="id01" class="w3-modal">
+        <div class="w3-modal-content">
+          <div class="w3-container">
+            <span
+              onclick="document.getElementById('id01').style.display='none'"
+              class="w3-button w3-display-topright"
+              >&times;</span
+            >
+            <PostOpened />
+          </div>
+        </div>
+      </div>  
     </div>
   </div>
 </template>
 
 <script>
+import PostOpened from "@/components/PostOpened.vue";
 export default {
   name: "Post",
 
@@ -46,6 +64,9 @@ export default {
     lokacija: String,
     slika: String,
   },
+  components: {
+    PostOpened,
+  }
 };
 </script>
 
@@ -118,8 +139,8 @@ export default {
   margin-top: 30px !important;
   justify-content: right;
 }
-.more-info > a {
-  text-decoration: none;
+.more-info > button {
+  border: none;
   color: black;
   float: right;
   margin-right: 50px;
@@ -128,8 +149,31 @@ export default {
   border-radius: 5px;
   transition: transform 100ms;
 }
-.more-info > a:hover {
+.more-info > button:hover {
   transform: scale(1.1);
+}
+.w3-modal{
+  margin: 0;
+  padding: 0;
+    backdrop-filter: blur(4px);
+}
+.w3-modal-content{
+  margin: 0;
+  padding: 0;
+  top: 25%;
+  margin: auto;
+}
+.w3-container{
+  margin: 0;
+  padding: 0;
+}
+span{
+  position: absolute;
+  color: white;
+  z-index: 1;
+  font-size: 30px;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 @media only screen and (max-width: 1000px) {
   .box {
@@ -188,7 +232,7 @@ export default {
     justify-content: center;
     padding-bottom: 0px;
   }
-  .more-info > a {
+  .more-info > button {
     margin-right: 0px;
   }
 

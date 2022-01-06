@@ -22,31 +22,31 @@
           <ul class="dropdown-menu">
             <li>
               <input type="checkbox" id="el" name="el" />
-              <label for="el">Elektrotehničar</label>
+              <label for="el"> Elektrotehničar</label>
             </li>
             <li>
               <input type="checkbox" id="voda" name="voda" />
-              <label for="voda">Vodoinstalater</label>
+              <label for="voda"> Vodoinstalater</label>
             </li>
             <li>
               <input type="checkbox" id="čiščenje" name="čiščenje" />
-              <label for="čiščenje">Čiščenje</label>
+              <label for="čiščenje"> Čiščenje</label>
             </li>
             <li>
               <input type="checkbox" id="vrt" name="vrt" />
-              <label for="vrt">Održavanje vrta</label>
+              <label for="vrt"> Održavanje vrta</label>
             </li>
             <li>
               <input type="checkbox" id="soboslikanje" name="soboslikanje" />
-              <label for="soboslikanje">Soboslikanje</label>
+              <label for="soboslikanje"> Soboslikanje</label>
             </li>
             <li>
               <input type="checkbox" id="odabir1" name="odabir1" />
-              <label for="odabir1">Odabir1</label>
+              <label for="odabir1"> Odabir1</label>
             </li>
             <li>
               <input type="checkbox" id="odabir2" name="odabir2" />
-              <label for="odabir2">Odabir2</label>
+              <label for="odabir2"> Odabir2</label>
             </li>
           </ul>
         </div>
@@ -136,6 +136,9 @@ li {
     text-decoration: none;
     color: black;
     font-weight: bold;
+}
+label{
+  padding-left: 5px;
 }
 @media only screen and (max-width: 991px) {
  .burek{
