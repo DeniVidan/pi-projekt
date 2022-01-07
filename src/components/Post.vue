@@ -162,6 +162,7 @@ export default {
   padding: 0;
   top: 25%;
   margin: auto;
+  background-color: transparent;
 }
 .w3-container{
   margin: 0;

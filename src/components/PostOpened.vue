@@ -81,6 +81,7 @@ export default {
 .box1 {
   margin: 0px;
   background-color: #383838;
+  border-radius: 20px !important;
 }
 .row {
   display: flex;
@@ -229,6 +230,7 @@ input:focus {
 
   .box1 {
     padding-bottom: 0px;
+    border-radius: 0px !important;
   }
 }
 </style>
