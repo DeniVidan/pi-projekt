@@ -8,7 +8,11 @@
         <p>{{ ime }}</p>
       </div>
       <div class="col-md-2 favourite-icon">
-        <i class="far fa-star" style="font-size: 20px; margin-top: 15px"></i>
+        <i
+          v-if="this.$store.currentUser"
+          class="far fa-star"
+          style="font-size: 20px; margin-top: 15px"
+        ></i>
       </div>
     </div>
 
@@ -18,7 +22,7 @@
           src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMGMtNC4xOTggMC04IDMuNDAzLTggNy42MDIgMCA2LjI0MyA2LjM3NyA2LjkwMyA4IDE2LjM5OCAxLjYyMy05LjQ5NSA4LTEwLjE1NSA4LTE2LjM5OCAwLTQuMTk5LTMuODAxLTcuNjAyLTgtNy42MDJ6bTAgMTFjLTEuNjU3IDAtMy0xLjM0My0zLTNzMS4zNDItMyAzLTMgMyAxLjM0MyAzIDMtMS4zNDMgMy0zIDN6Ii8+PC9zdmc+"
         />{{ lokacija }}
         <br />
-        <i class="far fa-thumbs-up mt-3"></i>
+        <i v-if="this.$store.currentUser" class="far fa-thumbs-up mt-3"></i>
       </div>
       <div class="col-md-10 content-box">
         <p>
@@ -45,7 +49,7 @@
             <PostOpened />
           </div>
         </div>
-      </div>  
+      </div>
     </div>
   </div>
 </template>
@@ -66,7 +70,7 @@ export default {
   },
   components: {
     PostOpened,
-  }
+  },
 };
 </script>
 
@@ -151,31 +155,35 @@ export default {
 }
 .more-info > button:hover {
   transform: scale(1.1);
+  background-color: rgb(172, 172, 172) !important;
 }
-.w3-modal{
+.w3-modal {
   margin: 0;
   padding: 0;
-    backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
-.w3-modal-content{
+.w3-modal-content {
   margin: 0;
   padding: 0;
   top: 25%;
   margin: auto;
   background-color: transparent;
 }
-.w3-container{
+.w3-container {
   margin: 0;
   padding: 0;
 }
-span{
+span {
   position: absolute;
   color: white;
   z-index: 1;
   font-size: 30px;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding-right: 9px;
+  padding-left: 9px;
+  border-top-right-radius: 20px !important;
+  border-bottom-left-radius: 20px !important;
 }
+
 @media only screen and (max-width: 1000px) {
   .box {
     width: 100%;
@@ -220,7 +228,7 @@ span{
     flex-direction: column-reverse;
   }
   .col-md-10.content-box > p {
-    text-align: left;
+    text-align: center;
     margin: auto;
     margin-right: 30px;
     margin-left: 30px;

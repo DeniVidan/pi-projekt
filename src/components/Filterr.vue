@@ -18,7 +18,7 @@
               type="button"
               data-toggle="dropdown"
             >
-              Dropdown Example <span class="caret"></span>
+              Vrsta posla <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
               <li>
@@ -140,6 +140,8 @@ li {
 }
 label {
   padding-left: 5px;
+  margin-bottom: 7px;
+  cursor: pointer;
 }
 @media only screen and (max-width: 991px) {
   .burek {

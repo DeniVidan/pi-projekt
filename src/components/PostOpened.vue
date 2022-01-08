@@ -8,7 +8,11 @@
         <p>Deni Vidan</p>
       </div>
       <div class="col-md-2 favourite-icon">
-        <i class="far fa-star" style="font-size: 20px; margin-top: 15px"></i>
+        <i
+          v-if="this.$store.currentUser"
+          class="far fa-star"
+          style="font-size: 20px; margin-top: 15px"
+        ></i>
       </div>
     </div>
 
@@ -16,9 +20,10 @@
       <div class="col-md-2 like-box mt-3">
         <img
           src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMGMtNC4xOTggMC04IDMuNDAzLTggNy42MDIgMCA2LjI0MyA2LjM3NyA2LjkwMyA4IDE2LjM5OCAxLjYyMy05LjQ5NSA4LTEwLjE1NSA4LTE2LjM5OCAwLTQuMTk5LTMuODAxLTcuNjAyLTgtNy42MDJ6bTAgMTFjLTEuNjU3IDAtMy0xLjM0My0zLTNzMS4zNDItMyAzLTMgMyAxLjM0MyAzIDMtMS4zNDMgMy0zIDN6Ii8+PC9zdmc+"
-        /> Rovinj
+        />
+        Rovinj
         <br />
-        <i class="far fa-thumbs-up mt-3"></i>
+        <i v-if="this.$store.currentUser" class="far fa-thumbs-up mt-3"></i>
       </div>
       <div class="col-md-10 content-box">
         <p>
@@ -58,7 +63,7 @@
 <script>
 export default {
   name: "PostOpened",
-  
+
   data() {
     return {};
   },
@@ -96,9 +101,8 @@ export default {
 
 .image-box {
   margin: 0px 0px 0px 0px !important;
-  
 }
-.col-sm-1.image-box{
+.col-sm-1.image-box {
   max-width: 50px !important;
 }
 .image {
@@ -167,6 +171,7 @@ input:focus {
   align-self: center;
   max-width: 50px !important;
 }
+
 @media only screen and (max-width: 1000px) {
   .box1 {
     width: 100%;

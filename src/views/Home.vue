@@ -30,10 +30,10 @@
           </div> -->
 
           <!-- Button trigger modal -->
-          <FilterOpened class="filter-opened" style="margin-left: 65%;"/>
+          <FilterOpened class="filter-opened" style="margin-left: 65%" />
 
           <Post
-            style="z-index: 1"
+            class="post"
             v-for="Objava in Objave"
             :key="Objava.id"
             :opis="Objava.opis"
@@ -55,7 +55,7 @@ import Post from "@/components/Post.vue";
 import AddPostButton from "@/components/AddPostButton.vue";
 import NavbarOptions from "@/components/NavbarOptions.vue";
 import Filterr from "@/components/Filterr.vue";
-import FilterOpened from "@/components/FilterOpened.vue"
+import FilterOpened from "@/components/FilterOpened.vue";
 import { collection, getDocs, db, query, orderBy } from "@/firebase";
 
 export default {
@@ -97,7 +97,7 @@ export default {
 </script>
 
 <style scoped>
-*{
+* {
   padding: 0;
 }
 .flex-container {
@@ -105,6 +105,9 @@ export default {
 }
 .col-sm-9 {
   padding: 0;
+}
+.post {
+  z-index: 1;
 }
 .w3-button {
   display: none;
@@ -117,9 +120,10 @@ export default {
 .w3-button > img {
   padding-right: 10px;
 }
-.filter-opened{
+.filter-opened {
   display: none;
 }
+
 @media only screen and (max-width: 991px) {
   .row {
     flex-direction: column;
@@ -128,7 +132,7 @@ export default {
   .w3-button {
     display: block;
   }
-  .filter-opened{
+  .filter-opened {
     display: block;
   }
 }
