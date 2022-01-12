@@ -34,7 +34,6 @@
             >
           </div>
           <div class="filter-item">
-            
             <div class="dropdown">
               <button
                 class="btn dropdown-toggle"
@@ -45,35 +44,66 @@
               </button>
               <ul class="dropdown-menu">
                 <li>
-                  <input type="checkbox" id="el" name="el" />
+                  <input
+                    type="radio"
+                    value="elektrotehnicar"
+                    name="isto"
+                    @change="(e) => (this.newVrsta = e.target.value)"
+                  />
                   <label for="el"> Elektrotehničar</label>
                 </li>
                 <li>
-                  <input type="checkbox" id="voda" name="voda" />
+                  <input
+                    type="radio"
+                    value="vodoinstalater"
+                    name="isto"
+                    @change="(e) => (this.newVrsta = e.target.value)"
+                  />
                   <label for="voda"> Vodoinstalater</label>
                 </li>
                 <li>
-                  <input type="checkbox" id="čiščenje" name="čiščenje" />
+                  <input
+                    type="radio"
+                    value="ciscenje"
+                    name="isto"
+                    @change="(e) => (this.newVrsta = e.target.value)"
+                  />
                   <label for="čiščenje"> Čiščenje</label>
                 </li>
                 <li>
-                  <input type="checkbox" id="vrt" name="vrt" />
+                  <input
+                    type="radio"
+                    value="odrzavanjeVrta"
+                    name="isto"
+                    @change="(e) => (this.newVrsta = e.target.value)"
+                  />
                   <label for="vrt"> Održavanje vrta</label>
                 </li>
                 <li>
                   <input
-                    type="checkbox"
-                    id="soboslikanje"
-                    name="soboslikanje"
+                    type="radio"
+                    value="soboslikar"
+                    name="isto"
+                    @change="(e) => (this.newVrsta = e.target.value)"
                   />
                   <label for="soboslikanje"> Soboslikanje</label>
                 </li>
                 <li>
-                  <input type="checkbox" id="odabir1" name="odabir1" />
+                  <input
+                    type="radio"
+                    value="odabir1"
+                    name="isto"
+                    @change="(e) => (this.newVrsta = e.target.value)"
+                  />
                   <label for="odabir1"> Odabir1</label>
                 </li>
                 <li>
-                  <input type="checkbox" id="odabir2" name="odabir2" />
+                  <input
+                    type="radio"
+                    value="odabir2"
+                    name="isto"
+                    @change="(e) => (this.newVrsta = e.target.value)"
+                  />
                   <label for="odabir2"> Odabir2</label>
                 </li>
               </ul>
@@ -159,7 +189,7 @@ export default {
 li > label {
   padding: 0px 5px;
 }
-li{
+li {
   padding-left: 5px !important;
 }
 .btn {
