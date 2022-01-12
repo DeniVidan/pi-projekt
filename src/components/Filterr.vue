@@ -200,8 +200,7 @@ export default {
 .kategorija {
   text-align: start;
 }
-.vrsta-posla {
-}
+
 .cijena {
   border-bottom: none;
   text-align: start;
@@ -243,6 +242,13 @@ li {
   text-decoration: none;
   color: black;
   font-weight: bold;
+  margin-left: 105px;
+}
+
+label {
+  padding-left: 5px;
+  margin-bottom: 7px;
+  cursor: pointer;
 }
 
 .flexy {
@@ -259,7 +265,7 @@ li {
     margin: 0;
   }
   .filter-mobile {
-    display: block;
+    display: none;
   }
 }
 </style>

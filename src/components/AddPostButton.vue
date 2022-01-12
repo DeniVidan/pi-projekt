@@ -14,45 +14,92 @@
         <div class="headerForma">
           <h2>Novi oglas</h2>
           <button class="gumbIkona" @click="modalShow = !modalShow">
-            <i class="far fa-times-circle"></i>
+            <span
+              onclick="document.getElementById('id01').style.display='none'"
+              class="close-button w3-button w3-display-topright"
+              >&times;</span
+            >
           </button>
         </div>
 
         <form>
           <div class="switch-button">
-            <input class="switch-button-checkbox" type="checkbox" v-model="newTip"></input>
-            <label class="switch-button-label" for=""><span class="switch-button-label-span">Nudim</span></label>
+            <input
+              class="switch-button-checkbox"
+              type="checkbox"
+              v-model="newTip"
+            />
+            <label class="switch-button-label" for=""
+              ><span class="switch-button-label-span">Nudim</span></label
+            >
+          </div>
+          <div class="filter-item">
+            
+            <div class="dropdown">
+              <button
+                class="btn dropdown-toggle"
+                type="button"
+                data-toggle="dropdown"
+              >
+                Vrsta posla <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <input type="checkbox" id="el" name="el" />
+                  <label for="el"> Elektrotehničar</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="voda" name="voda" />
+                  <label for="voda"> Vodoinstalater</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="čiščenje" name="čiščenje" />
+                  <label for="čiščenje"> Čiščenje</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="vrt" name="vrt" />
+                  <label for="vrt"> Održavanje vrta</label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="soboslikanje"
+                    name="soboslikanje"
+                  />
+                  <label for="soboslikanje"> Soboslikanje</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="odabir1" name="odabir1" />
+                  <label for="odabir1"> Odabir1</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="odabir2" name="odabir2" />
+                  <label for="odabir2"> Odabir2</label>
+                </li>
+              </ul>
+            </div>
           </div>
           <div class="user-box">
-            
-              <select name="posao" id="posao" v-model="newVrsta">
-                <option value="none" selected disabled hidden>Odaberi vrstu posla</option>
-                <option value="elektrotehnicar">Elektrotehničar</option>
-                <option value="vodoinstalater">Vodoinstalater</option>
-                <option value="ciscenje">Čišćenje</option>
-                <option value="odrzavanjeVrta">Održavanje vrta</option>
-                <option value="soboslikar">Soboslikar</option>
-  
-  
-              </select>
-            
-          </div>
-          <div class="user-box">
-            <input type="text" name="opis" v-model="newOpis" required/>
+            <input type="text" name="" v-model="newOpis" required />
             <label>Opis</label>
           </div>
           <div class="user-box">
-            <input type="text" name=""  v-model="newLokacija" required/>
+            <input type="text" name="" v-model="newLokacija" required />
             <label>Lokacija</label>
           </div>
           <div class="user-box">
-            <input type="text" name=""  v-model="newCijena" required/>
+            <input type="text" name="" v-model="newCijena" required />
             <label>Cijena po satu</label>
           </div>
           <div class="row1">
-            <div class="col-sm-5">
-              <button type="submit" class="button" @click.prevent="newPost" :disabled="isSending"> Objavi </button>
-            </div>
+            <button
+              type="submit"
+              class="button"
+              @click.prevent="newPost"
+              :disabled="isSending"
+            >
+              Objavi
+            </button>
           </div>
         </form>
       </div>
@@ -61,56 +108,82 @@
 </template>
 
 <script>
-import {db, addDoc, collection} from "@/firebase"
-import store from "@/store"
+import { db, addDoc, collection } from "@/firebase";
+import store from "@/store";
 
 export default {
   name: "AddPostButton",
   data() {
     return {
-      
       modalShow: false,
       isSending: false,
       newTip: false,
       newVrsta: "",
-      newOpis:"",
-      newLokacija:"",
-      newCijena:"",
-      time:""
+      newOpis: "",
+      newLokacija: "",
+      newCijena: "",
+      time: "",
     };
   },
-  methods:{
+  methods: {
     async newPost() {
       console.log("Postam");
       this.isSending = true;
-      const newObjava={
-       tip : this.newTip,
-       vrsta : this.newVrsta,
-       opis : this.newOpis,
-       lokacija : this.newLokacija,
-       cijena : this.newCijena,
-       time: Date.now(),
-       uid: store.currentUser.uid,
-       korisnik:{
-         id: store.currentUser.uid,
-         ime: store.currentUser.displayName,
-         imageURL: store.currentUser.photoURL,
-       }
-       }
-      try{
-        
-      const docRef = await addDoc(collection(db, "objave"), newObjava);
-  console.log("Spremljeno");
-} catch (e) {
-  console.error("Greška kod dodavanja oglasa ", e);
-}
-this.$router.go();
+      const newObjava = {
+        tip: this.newTip,
+        vrsta: this.newVrsta,
+        opis: this.newOpis,
+        lokacija: this.newLokacija,
+        cijena: this.newCijena,
+        time: Date.now(),
+        uid: store.currentUser.uid,
+        korisnik: {
+          id: store.currentUser.uid,
+          ime: store.currentUser.displayName,
+          imageURL: store.currentUser.photoURL,
+        },
+      };
+      try {
+        const docRef = await addDoc(collection(db, "objave"), newObjava);
+        console.log("Spremljeno");
+      } catch (e) {
+        console.error("Greška kod dodavanja oglasa ", e);
+      }
+      this.$router.go();
     },
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+li > label {
+  padding: 0px 5px;
+}
+li{
+  padding-left: 5px !important;
+}
+.btn {
+  padding: 0px;
+  color: white;
+  background-color: transparent;
+}
+.btn:focus {
+  box-shadow: none;
+}
+.dropdown {
+  text-align: start;
+}
+.filter-item {
+  padding: 5px 0px 13px 0px;
+  color: white;
+}
+select {
+  background-color: transparent;
+  color: white;
+}
+option {
+  color: black;
+}
 .addPostButton {
   margin-bottom: 35px;
 }
@@ -323,9 +396,15 @@ this.$router.go();
     }
   }
 }
+.close-button {
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  font-size: 30px;
+}
 @media only screen and (max-width: 600px) {
   .postForm {
     width: 100%;
     border-radius: 0px;
-  }}
+  }
+}
 </style>
