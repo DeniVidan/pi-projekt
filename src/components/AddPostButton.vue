@@ -71,7 +71,7 @@ export default {
       
       modalShow: false,
       isSending: false,
-      newTip: "",
+      newTip: false,
       newVrsta: "",
       newOpis:"",
       newLokacija:"",
