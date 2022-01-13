@@ -65,7 +65,10 @@ export default {
     async profilePicture() {
       console.log("RADIM");
       const randomId = randomID();
-      const storageRef = ref(storage, `profilePictures/${randomId}`);
+      const storageRef = ref(
+        storage,
+        `profilePictures/${getAuth().currentUser.email}/${randomId}`
+      );
       this.isSending = true;
       if (this.image) {
         await uploadBytes(storageRef, this.image);
@@ -73,8 +76,6 @@ export default {
 
         try {
           await updateProfile(getAuth().currentUser, { photoURL: downloadUrl });
-
-          await deleteObject(oldImage);
         } catch (error) {
           console.log(error);
         }
