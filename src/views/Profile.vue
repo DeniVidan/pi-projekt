@@ -9,11 +9,11 @@
         </div>
         <div class="col-sm-9">
           <div class="row userSettings">
-            <div class="col-lg-6 userImage">
+            <div class="col-sm-6 userImage">
               <img :src="photoURL" class="image" alt="" />
               <h2 class="mt-4">{{ name }}</h2>
             </div>
-            <div class="col-lg-6 userInfo">
+            <div class="col-sm-6 userInfo">
               <router-link
                 class="item"
                 class-active="active"

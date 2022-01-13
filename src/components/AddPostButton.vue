@@ -38,7 +38,7 @@
             
           </div>
           <div class="user-box">
-            <input type="text" name="opis" v-model="newOpis" required/>
+            <input type="text" name="" v-model="newOpis" required/>
             <label>Opis</label>
           </div>
           <div class="user-box">

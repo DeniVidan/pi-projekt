@@ -17,7 +17,7 @@
             type="button"
             data-toggle="dropdown"
           >
-            Dropdown Example <span class="caret"></span>
+            Vrsta posla <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
             <li>
