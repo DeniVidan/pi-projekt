@@ -36,6 +36,7 @@
             class="post"
             v-for="Objava in Objave"
             :key="Objava.id"
+            :id="Objava.id"
             :opis="Objava.opis"
             :ime="Objava.korisnik.ime"
             :lokacija="Objava.lokacija"

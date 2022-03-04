@@ -30,39 +30,31 @@
         </p>
       </div>
     </div>
-
-    <div class="row more-info">
-      <button
-        onclick="document.getElementById('id01').style.display='block'"
-        class="w3-button"
-      >
-        Više
-      </button>
-      <div id="id01" class="w3-modal">
-        <div class="w3-modal-content">
-          <div class="w3-container">
-            <span
-              onclick="document.getElementById('id01').style.display='none'"
-              class="w3-button w3-display-topright"
-              >&times;</span
-            >
-            <PostOpened />
-          </div>
-        </div>
-      </div>
-    </div>
+    <Vise :trenutnaObjava="trenutnaObjava" />
   </div>
 </template>
 
 <script>
 import PostOpened from "@/components/PostOpened.vue";
+import { mapGetters } from "vuex";
+import Vise from "@/components/Vise";
 export default {
   name: "Post",
-
   data() {
-    return {};
+    return {
+      trenutnaObjava: null,
+    };
+  },
+  mounted() {
+    const objava = this.Objave.find((x) => x.id == this.id);
+    this.trenutnaObjava = objava;
+  },
+  methods: {},
+  computed: {
+    ...mapGetters({ Objave: "objave" }),
   },
   props: {
+    id: String,
     opis: String,
     ime: String,
     lokacija: String,
@@ -70,6 +62,7 @@ export default {
   },
   components: {
     PostOpened,
+    Vise,
   },
 };
 </script>
