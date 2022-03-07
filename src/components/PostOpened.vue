@@ -31,6 +31,21 @@
         </p>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <p class="card-text" v-for="data in comments" :key="data.id">
+          <img
+            :src="data.user.photoURL"
+            alt=""
+            class="image-box"
+            style="border-radius: 20px"
+          />
+
+          <b>{{ data.user.displayName }}: </b>
+          {{ data.comment }}
+        </p>
+      </div>
+    </div>
     <form action="">
       <div class="row comment-section">
         <div class="col-sm-1 image-box">
@@ -78,14 +93,14 @@ import {
 export default {
   name: "PostOpened",
   mounted() {
-    this.getComments();
     this.getObjava();
+    this.getComments();
   },
   data() {
     return {
       photoURL: store.currentUser.photoURL,
       newComment: "",
-      komentari: null,
+      comments: [],
       opis: "",
       ime: "",
       lokacija: "",
@@ -95,6 +110,7 @@ export default {
   props: {
     id: String,
   },
+
   methods: {
     async getObjava() {
       const objava = await getDoc(doc(db, "objave", this.id));
@@ -118,6 +134,7 @@ export default {
         posted_at: Date.now(),
       });
       this.newComment = null;
+      this.getComments();
     },
     // hvatanje komentara
     async getComments() {
@@ -129,7 +146,8 @@ export default {
         noviKomentari.push({ id: komentar.id, ...komentar.data() });
       });
 
-      this.komentari = noviKomentari;
+      this.comments = noviKomentari;
+      console.log(this.comments);
     },
   },
 };

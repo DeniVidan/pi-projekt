@@ -25,9 +25,9 @@
 
     <div class="row post-info">
       <div class="col-md-2 like-box mt-3">
-        <img
-          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMGMtNC4xOTggMC04IDMuNDAzLTggNy42MDIgMCA2LjI0MyA2LjM3NyA2LjkwMyA4IDE2LjM5OCAxLjYyMy05LjQ5NSA4LTEwLjE1NSA4LTE2LjM5OCAwLTQuMTk5LTMuODAxLTcuNjAyLTgtNy42MDJ6bTAgMTFjLTEuNjU3IDAtMy0xLjM0My0zLTNzMS4zNDItMyAzLTMgMyAxLjM0MyAzIDMtMS4zNDMgMy0zIDN6Ii8+PC9zdmc+"
-        />{{ lokacija }}
+        <img src="https://img.icons8.com/ios-filled/23/000000/marker.png" />{{
+          lokacija
+        }}
         <br />
         <i v-if="this.$store.currentUser" class="far fa-thumbs-up mt-3"></i>
       </div>
@@ -63,6 +63,7 @@ export default {
     async obrisiPost() {
       await deleteDoc(doc(db, "objave", this.id));
       console.log("Post Obrisan");
+      this.$router.go();
     },
   },
   computed: {
