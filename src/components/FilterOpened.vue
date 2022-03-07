@@ -2,11 +2,11 @@
   <div class="filter-opened">
     <button
       type="button"
-      class="btn1 "
+      class="btn1"
       data-toggle="modal"
       data-target="#exampleModal"
     >
-      <img src="@/assets/filter.png" alt="" style="padding-right: 7px;"/>Filter
+      <img src="@/assets/filter.png" alt="" style="padding-right: 7px" />Filter
     </button>
 
     <!-- Modal -->
@@ -24,8 +24,12 @@
             <div class="filter-item naslov">Filtriraj rezultate</div>
             <div class="filter-item kategorija">
               <b>Kategorija</b> <br />
-              &nbsp<input type="checkbox" />&nbsp Nudim posao <br />
-              &nbsp<input type="checkbox" />&nbsp Tražim posao
+              <div style="padding-left: 5px">
+                <input type="checkbox" id="nudim" name="nudim" />
+                <label for="nudim">Nudim posao</label> <br />
+                <input type="checkbox" id="trazim" name="trazim" />
+                <label for="trazim">Tražim posao</label>
+              </div>
             </div>
             <div class="filter-item vrsta-posla">
               <div class="dropdown">
@@ -34,7 +38,7 @@
                   type="button"
                   data-toggle="dropdown"
                 >
-                  Dropdown Example <span class="caret"></span>
+                  Vrsta posla<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
                   <li>
@@ -81,7 +85,6 @@
               <button type="button">Filtriraj</button>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -104,7 +107,7 @@ export default {
   margin: 0;
   padding: 0;
 }
-.modal-open{
+.modal-open {
   padding: 0 !important;
 }
 .modal {
@@ -121,18 +124,18 @@ export default {
   color: white;
   border-radius: 20px;
 }
-.modal-footer{
+.modal-footer {
   padding: 20px;
   border-top: 1px solid grey;
 }
-.btn1{
+.btn1 {
   border: none;
   border-radius: 20px;
   background-color: transparent;
   padding: 5px 20px;
   margin: 0px 20px 20px 20px;
 }
-.btn1:hover{
+.btn1:hover {
   background-color: rgb(187, 187, 187);
 }
 .filter-item {
@@ -194,7 +197,7 @@ label {
   padding-left: 5px;
 }
 @media only screen and (max-width: 600px) {
-  .btn1{
+  .btn1 {
     margin-right: 0px;
   }
 }
