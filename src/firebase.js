@@ -11,6 +11,7 @@ import {
   where,
   orderBy,
   getDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -65,4 +66,5 @@ export {
   where,
   orderBy,
   getDoc,
+  deleteDoc,
 };

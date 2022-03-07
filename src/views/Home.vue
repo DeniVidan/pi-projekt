@@ -41,6 +41,7 @@
             :ime="Objava.korisnik.ime"
             :lokacija="Objava.lokacija"
             :slika="Objava.korisnik.imageURL"
+            :korisnik_id="Objava.korisnik.id"
           />
         </div>
       </div>

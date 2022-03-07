@@ -13,6 +13,13 @@
           class="far fa-star"
           style="font-size: 20px; margin-top: 15px"
         ></i>
+
+        <i
+          v-if="uid == korisnik_id"
+          class="far fa-trash"
+          style="font-size: 20px; margin-top: 15px; color: #b30000"
+          @click="obrisiPost"
+        ></i>
       </div>
     </div>
 
@@ -38,18 +45,26 @@
 import PostOpened from "@/components/PostOpened.vue";
 import { mapGetters } from "vuex";
 import Vise from "@/components/Vise";
+import store from "@/store.js";
+import { doc, deleteDoc, db } from "@/firebase.js";
 export default {
   name: "Post",
   data() {
     return {
       trenutnaObjava: null,
+      uid: store.currentUser.uid,
     };
   },
   mounted() {
     const objava = this.Objave.find((x) => x.id == this.id);
     this.trenutnaObjava = objava;
   },
-  methods: {},
+  methods: {
+    async obrisiPost() {
+      await deleteDoc(doc(db, "objave", this.id));
+      console.log("Post Obrisan");
+    },
+  },
   computed: {
     ...mapGetters({ Objave: "objave" }),
   },
@@ -59,6 +74,7 @@ export default {
     ime: String,
     lokacija: String,
     slika: String,
+    korisnik_id: String,
   },
   components: {
     PostOpened,
