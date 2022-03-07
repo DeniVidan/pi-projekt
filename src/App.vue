@@ -61,6 +61,7 @@
 <script>
 import { getAuth, onAuthStateChanged } from "@/firebase.js";
 import store from "@/store.js";
+import { mapActions } from "vuex";
 
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
@@ -80,6 +81,12 @@ export default {
     return {
       store,
     };
+  },
+  mounted() {
+    this.getPosts();
+  },
+  methods: {
+    ...mapActions({ getPosts: "getPosts" }),
   },
 };
 </script>

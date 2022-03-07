@@ -36,10 +36,12 @@
             class="post"
             v-for="Objava in Objave"
             :key="Objava.id"
+            :id="Objava.id"
             :opis="Objava.opis"
             :ime="Objava.korisnik.ime"
             :lokacija="Objava.lokacija"
             :slika="Objava.korisnik.imageURL"
+            :korisnik_id="Objava.korisnik.id"
           />
         </div>
       </div>
@@ -55,36 +57,20 @@ import Post from "@/components/Post.vue";
 import AddPostButton from "@/components/AddPostButton.vue";
 import NavbarOptions from "@/components/NavbarOptions.vue";
 import Filterr from "@/components/Filterr.vue";
+
+import { mapGetters } from "vuex";
 import FilterOpened from "@/components/FilterOpened.vue";
-import { collection, getDocs, db, query, orderBy } from "@/firebase";
 
 export default {
   name: "Home",
   data() {
-    return {
-      Objave: [],
-    };
+    return {};
   },
-  mounted() {
-    this.getPosts();
+
+  computed: {
+    ...mapGetters({ Objave: "objave" }),
   },
-  methods: {
-    async getPosts() {
-      console.log("Dohvačam postove iz Firebase");
-      const querySnapshot = await query(
-        collection(db, "objave"),
-        orderBy("time", "desc")
-      );
-      const objaveDocs = await getDocs(querySnapshot);
-      const Objave = [];
-      objaveDocs.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        //console.log(doc.id, " => ", doc.data());
-        Objave.push({ id: doc.id, ...doc.data() });
-      });
-      this.Objave = Objave;
-    },
-  },
+  methods: {},
   components: {
     Navbar,
     Post,

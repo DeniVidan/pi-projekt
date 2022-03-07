@@ -13,14 +13,21 @@
           class="far fa-star"
           style="font-size: 20px; margin-top: 15px"
         ></i>
+
+        <i
+          v-if="uid == korisnik_id"
+          class="far fa-trash"
+          style="font-size: 20px; margin-top: 15px; color: #b30000"
+          @click="obrisiPost"
+        ></i>
       </div>
     </div>
 
     <div class="row post-info">
       <div class="col-md-2 like-box mt-3">
-        <img
-          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMGMtNC4xOTggMC04IDMuNDAzLTggNy42MDIgMCA2LjI0MyA2LjM3NyA2LjkwMyA4IDE2LjM5OCAxLjYyMy05LjQ5NSA4LTEwLjE1NSA4LTE2LjM5OCAwLTQuMTk5LTMuODAxLTcuNjAyLTgtNy42MDJ6bTAgMTFjLTEuNjU3IDAtMy0xLjM0My0zLTNzMS4zNDItMyAzLTMgMyAxLjM0MyAzIDMtMS4zNDMgMy0zIDN6Ii8+PC9zdmc+"
-        />{{ lokacija }}
+        <img src="https://img.icons8.com/ios-filled/23/000000/marker.png" />{{
+          lokacija
+        }}
         <br />
         <i v-if="this.$store.currentUser" class="far fa-thumbs-up mt-3"></i>
       </div>
@@ -30,46 +37,49 @@
         </p>
       </div>
     </div>
-
-    <div class="row more-info">
-      <button
-        onclick="document.getElementById('id01').style.display='block'"
-        class="w3-button"
-      >
-        Više
-      </button>
-      <div id="id01" class="w3-modal">
-        <div class="w3-modal-content">
-          <div class="w3-container">
-            <span
-              onclick="document.getElementById('id01').style.display='none'"
-              class="w3-button w3-display-topright"
-              >&times;</span
-            >
-            <PostOpened />
-          </div>
-        </div>
-      </div>
-    </div>
+    <Vise :trenutnaObjava="trenutnaObjava" />
   </div>
 </template>
 
 <script>
 import PostOpened from "@/components/PostOpened.vue";
+import { mapGetters } from "vuex";
+import Vise from "@/components/Vise";
+import store from "@/store.js";
+import { doc, deleteDoc, db } from "@/firebase.js";
 export default {
   name: "Post",
-
   data() {
-    return {};
+    return {
+      trenutnaObjava: null,
+      uid: store.currentUser.uid,
+    };
+  },
+  mounted() {
+    const objava = this.Objave.find((x) => x.id == this.id);
+    this.trenutnaObjava = objava;
+  },
+  methods: {
+    async obrisiPost() {
+      await deleteDoc(doc(db, "objave", this.id));
+      console.log("Post Obrisan");
+      this.$router.go();
+    },
+  },
+  computed: {
+    ...mapGetters({ Objave: "objave" }),
   },
   props: {
+    id: String,
     opis: String,
     ime: String,
     lokacija: String,
     slika: String,
+    korisnik_id: String,
   },
   components: {
     PostOpened,
+    Vise,
   },
 };
 </script>

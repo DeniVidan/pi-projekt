@@ -1,11 +1,11 @@
-<template>
+<template v-if="id">
   <div class="box1">
     <div class="row personal-info">
       <div class="col-md-3 image-box">
-        <img src="@/assets/profilepic.jpg" alt="" class="image" />
+        <img :src="slika" alt="" class="image" />
       </div>
       <div class="col-md-7 name">
-        <p>Deni Vidan</p>
+        <p>{{ ime }}</p>
       </div>
       <div class="col-md-2 favourite-icon">
         <i
@@ -21,57 +21,134 @@
         <img
           src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMGMtNC4xOTggMC04IDMuNDAzLTggNy42MDIgMCA2LjI0MyA2LjM3NyA2LjkwMyA4IDE2LjM5OCAxLjYyMy05LjQ5NSA4LTEwLjE1NSA4LTE2LjM5OCAwLTQuMTk5LTMuODAxLTcuNjAyLTgtNy42MDJ6bTAgMTFjLTEuNjU3IDAtMy0xLjM0My0zLTNzMS4zNDItMyAzLTMgMyAxLjM0MyAzIDMtMS4zNDMgMy0zIDN6Ii8+PC9zdmc+"
         />
-        Rovinj
+        {{ lokacija }}
         <br />
         <i v-if="this.$store.currentUser" class="far fa-thumbs-up mt-3"></i>
       </div>
       <div class="col-md-10 content-box">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, eos
-          sunt omnis molestias debitis officia deserunt facere dolorum. Iusto,
-          fugit!
+          {{ opis }}
         </p>
       </div>
     </div>
-
-    <div class="row comment-section">
-      <div class="col-sm-1 image-box">
-        <img
-          src="@/assets/profilepic.jpg"
-          alt=""
-          class=""
-          width="40px"
-          style="float: right; border-radius: 20px"
-        />
-      </div>
-      <div class="col-sm-10 comment">
-        <input type="text" placeholder="Napiši komentar..." />
-      </div>
-      <div class="col-sm-1 button">
-        <a href="#">
+    <div class="row">
+      <div class="col">
+        <p class="card-text" v-for="data in comments" :key="data.id">
           <img
-            src="@/assets/send-message.png"
+            :src="data.user.photoURL"
             alt=""
-            style="float: left; align-items: center !important"
+            class="image-box"
+            style="border-radius: 20px"
           />
-        </a>
+
+          <b>{{ data.user.displayName }}: </b>
+          {{ data.comment }}
+        </p>
       </div>
     </div>
+    <form action="">
+      <div class="row comment-section">
+        <div class="col-sm-1 image-box">
+          <img
+            :src="slika"
+            alt=""
+            class=""
+            width="40px"
+            style="float: right; border-radius: 20px"
+          />
+        </div>
+
+        <div class="col-sm-10 comment">
+          <input
+            type="text"
+            placeholder="Napiši komentar..."
+            v-model="newComment"
+          />
+        </div>
+        <div class="col-sm-1 button">
+          <button @click.prevent="addComment">
+            <img
+              src="@/assets/send-message.png"
+              alt=""
+              style="float: left; align-items: center !important"
+            />
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
+import store from "@/store";
+import {
+  db,
+  firebase,
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+} from "@/firebase";
 export default {
   name: "PostOpened",
-
+  mounted() {
+    this.getObjava();
+    this.getComments();
+  },
   data() {
-    return {};
+    return {
+      photoURL: store.currentUser.photoURL,
+      newComment: "",
+      comments: [],
+      opis: "",
+      ime: "",
+      lokacija: "",
+      slika: "",
+    };
   },
   props: {
-    opis: String,
-    ime: String,
-    lokacija: String,
-    slika: String,
+    id: String,
+  },
+
+  methods: {
+    async getObjava() {
+      const objava = await getDoc(doc(db, "objave", this.id));
+
+      const data = objava.data();
+
+      this.opis = data.opis;
+      this.lokacija = data.lokacija;
+      this.ime = data.korisnik.ime;
+      this.slika = data.korisnik.imageURL;
+      console.log(data);
+    },
+    async addComment() {
+      await addDoc(collection(doc(db, "objave", this.id), "komentari"), {
+        user: {
+          id: store.currentUser.uid,
+          displayName: store.currentUser.displayName,
+          photoURL: store.currentUser.photoURL,
+        },
+        comment: this.newComment,
+        posted_at: Date.now(),
+      });
+      this.newComment = null;
+      this.getComments();
+    },
+    // hvatanje komentara
+    async getComments() {
+      const komentari = await getDocs(
+        collection(doc(db, "objave", this.id), "komentari")
+      );
+      let noviKomentari = [];
+      komentari.forEach((komentar) => {
+        noviKomentari.push({ id: komentar.id, ...komentar.data() });
+      });
+
+      this.comments = noviKomentari;
+      console.log(this.comments);
+    },
   },
 };
 </script>
