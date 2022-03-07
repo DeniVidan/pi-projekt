@@ -4,9 +4,9 @@
     <div :id="trenutnaObjava.id" class="w3-modal">
       <div class="w3-modal-content">
         <div class="w3-container">
-          <span @click="zatvori" class="w3-button w3-display-topright"
-            >&times;</span
-          >
+          <!-- <span @click="zatvori" class="w3-button w3-display-topright"
+            >&times;</span >-->
+          
           <PostOpened v-if="trenutnaObjava" :id="trenutnaObjava.id" />
         </div>
       </div>
@@ -40,4 +40,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.w3-modal-content{
+ border-radius: 20px;
+}
+.w3-container{
+  padding: 0;
+}
+</style>

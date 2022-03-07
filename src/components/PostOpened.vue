@@ -9,9 +9,8 @@
       </div>
       <div class="col-md-2 favourite-icon">
         <i
-          v-if="this.$store.currentUser"
-          class="far fa-star"
-          style="font-size: 20px; margin-top: 15px"
+          class="far fa-times-circle mt-3"
+          style="font-size: 20px; padding-left: 40px"
         ></i>
       </div>
     </div>
@@ -23,7 +22,16 @@
         />
         {{ lokacija }}
         <br />
-        <i v-if="this.$store.currentUser" class="far fa-thumbs-up mt-3"></i>
+        <i
+          v-if="this.$store.currentUser"
+          class="far fa-thumbs-up mt-3"
+          style="font-size: 20px"
+        ></i>
+        <i
+          v-if="this.$store.currentUser"
+          class="far fa-star"
+          style="font-size: 20px; padding-left: 10px"
+        ></i>
       </div>
       <div class="col-md-10 content-box">
         <p>
@@ -32,13 +40,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col mt-3">
         <p class="card-text" v-for="data in comments" :key="data.id">
           <img
             :src="data.user.photoURL"
             alt=""
             class="image-box"
-            style="border-radius: 20px"
+            width="40px"
+            style="border-radius: 20px; padding-right: 7px;"
           />
 
           <b>{{ data.user.displayName }}: </b>
@@ -180,7 +189,7 @@ export default {
   margin: 0px 0px 0px 0px !important;
 }
 .col-sm-1.image-box {
-  max-width: 50px !important;
+  max-width: 50px !important; 
 }
 .image {
   width: 80px;
@@ -210,9 +219,6 @@ export default {
   margin-top: 50px !important;
   margin: auto;
   width: 90%;
-}
-.image-box {
-  width: 30px;
 }
 .like-box {
   align-self: center;
@@ -248,6 +254,10 @@ input:focus {
   align-self: center;
   max-width: 50px !important;
 }
+.card-text{
+  text-align: start;
+  padding-left: 9rem;
+}
 
 @media only screen and (max-width: 1000px) {
   .box1 {
@@ -260,9 +270,7 @@ input:focus {
   .like-box {
     width: 150px;
   }
-  .image-box {
-    width: 200px;
-  }
+
   .favourite-icon {
     width: 20px;
     margin-right: 15px;
@@ -285,9 +293,7 @@ input:focus {
     float: none;
     transform: translate(0%, 30%);
   }
-  .image-box {
-    width: 100%;
-  }
+
   .post-info.row {
     margin-top: 50px;
     flex-direction: column-reverse;

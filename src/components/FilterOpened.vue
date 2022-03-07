@@ -24,28 +24,12 @@
             <div class="filter-item naslov">Filtriraj rezultate</div>
             <div class="filter-item kategorija">
               <b>Kategorija</b> <br />
-<<<<<<< HEAD
               <div style="padding-left: 5px">
                 <input type="checkbox" id="nudim" name="nudim" />
                 <label for="nudim">Nudim posao</label> <br />
                 <input type="checkbox" id="trazim" name="trazim" />
                 <label for="trazim">Tražim posao</label>
               </div>
-=======
-              &nbsp<input
-                type="radio"
-                name="test"
-                :value="false"
-                @click="handleTip"
-              />&nbsp Nudim posao
-              <br />
-              &nbsp<input
-                type="radio"
-                name="test"
-                :value="true"
-                @click="handleTip"
-              />&nbsp Tražim posao
->>>>>>> f45e7b4718dc0e7a05cddf613bea0c5f8a9a4237
             </div>
             <div class="filter-item vrsta-posla">
               <div class="dropdown">
@@ -54,11 +38,7 @@
                   type="button"
                   data-toggle="dropdown"
                 >
-<<<<<<< HEAD
                   Vrsta posla<span class="caret"></span>
-=======
-                  Vrsta posla <span class="caret"></span>
->>>>>>> f45e7b4718dc0e7a05cddf613bea0c5f8a9a4237
                 </button>
                 <ul class="dropdown-menu">
                   <li>
