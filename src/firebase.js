@@ -12,6 +12,10 @@ import {
   orderBy,
   getDoc,
   deleteDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  increment,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -67,4 +71,8 @@ export {
   orderBy,
   getDoc,
   deleteDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  increment,
 };

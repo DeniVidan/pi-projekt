@@ -7,7 +7,11 @@
           <!-- <span @click="zatvori" class="w3-button w3-display-topright"
             >&times;</span >-->
 
-          <PostOpened v-if="trenutnaObjava" :id="trenutnaObjava.id" />
+          <PostOpened
+            v-if="trenutnaObjava"
+            :id="trenutnaObjava.id"
+            :zatvori="zatvori"
+          />
         </div>
       </div>
     </div>
@@ -48,12 +52,12 @@ export default {
 .w3-container {
   padding: 0;
 }
-.w3-button{
+.w3-button {
   margin-right: 2rem;
   background-color: rgb(187, 187, 187);
 }
 @media only screen and (max-width: 600px) {
-  .w3-button{
+  .w3-button {
     margin-right: 0;
   }
 }

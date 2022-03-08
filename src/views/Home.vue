@@ -10,8 +10,6 @@
         <div class="col-sm-9">
           <AddPostButton />
 
-
-
           <!-- Button trigger modal -->
           <FilterOpened class="filter-opened" style="margin-left: 65%" />
 
@@ -25,6 +23,7 @@
             :lokacija="Objava.lokacija"
             :slika="Objava.korisnik.imageURL"
             :korisnik_id="Objava.korisnik.id"
+            :likes="Objava.likes"
           />
         </div>
       </div>

@@ -172,6 +172,7 @@ export default {
           ime: store.currentUser.displayName,
           imageURL: store.currentUser.photoURL,
         },
+        likes: [],
       };
       try {
         const docRef = await addDoc(collection(db, "objave"), newObjava);

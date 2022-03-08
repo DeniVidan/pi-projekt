@@ -8,9 +8,10 @@
         <p>{{ ime }}</p>
       </div>
       <div class="col-md-2 favourite-icon">
-        <!--  -->
         <i
+          @click="zatvori"
           class="far fa-times-circle mt-3"
+          style="font-size: 20px; padding-left: 40px"
         ></i>
       </div>
     </div>
@@ -79,7 +80,6 @@
             <img
               src="https://img.icons8.com/external-kmg-design-flat-kmg-design/32/000000/external-send-user-interface-kmg-design-flat-kmg-design.png"
             />
-            <!--  style="float: left; align-items: center !important; font-size: 20px; color: white;" -->
           </button>
         </div>
       </div>
@@ -117,6 +117,7 @@ export default {
   },
   props: {
     id: String,
+    zatvori: Function,
   },
 
   methods: {
@@ -129,7 +130,6 @@ export default {
       this.lokacija = data.lokacija;
       this.ime = data.korisnik.ime;
       this.slika = data.korisnik.imageURL;
-      console.log(data);
     },
     async addComment() {
       await addDoc(collection(doc(db, "objave", this.id), "komentari"), {
@@ -155,7 +155,6 @@ export default {
       });
 
       this.comments = noviKomentari;
-      console.log(this.comments);
     },
   },
 };
@@ -205,6 +204,7 @@ export default {
 }
 .content-box > p {
   text-align: left;
+
   margin-right: 50px;
   margin-left: 50px;
 }
@@ -221,6 +221,7 @@ export default {
 .like-box {
   align-self: center;
 }
+
 input {
   background-color: #383838;
   padding: 10px;
@@ -242,17 +243,16 @@ input:focus {
   padding-left: 9rem;
   padding-top: 0.3rem;
 }
-button{
+button {
   border: none;
   box-shadow: none;
   background-color: transparent !important;
 }
-.fa-times-circle{
-  font-size: 20px; 
+.fa-times-circle {
+  font-size: 20px;
   padding-left: 40px;
 }
 
-/* MEDIA */
 @media only screen and (max-width: 1000px) {
   .box1 {
     width: 100%;
@@ -306,14 +306,15 @@ button{
     justify-content: center;
     padding-bottom: 0px;
   }
+
   .box1 {
     padding-bottom: 0px;
     border-radius: 0px !important;
   }
 }
 @media only screen and (max-width: 767px) {
-  .fa-times-circle{
-    font-size: 20px; 
+  .fa-times-circle {
+    font-size: 20px;
     padding-left: 0px;
   }
 }

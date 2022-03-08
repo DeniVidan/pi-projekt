@@ -10,7 +10,7 @@
       <div class="col-md-2 favourite-icon">
         <i
           v-if="uid == korisnik_id"
-          class="far fa-trash-alt"
+          class="far fa-trash-alt klik"
           style="font-size: 20px; margin-top: 15px; color: #b30000"
           @click="obrisiPost"
         ></i>
@@ -23,10 +23,17 @@
           lokacija
         }}
         <br />
-        <i v-if="this.$store.currentUser" class="far fa-thumbs-up mt-3" style="font-size: 20px"></i>
+        <b class="pr-2">{{ likes }}</b>
         <i
           v-if="this.$store.currentUser"
-          class="far fa-star"
+          class="fa-thumbs-up mt-3 klik"
+          :class="liked ? 'fas' : 'far'"
+          style="font-size: 20px"
+          @click="toggleLike()"
+        ></i>
+        <i
+          v-if="this.$store.currentUser"
+          class="far fa-star klik"
           style="font-size: 20px; padding-left: 30px"
         ></i>
       </div>
@@ -45,24 +52,82 @@ import PostOpened from "@/components/PostOpened.vue";
 import { mapGetters } from "vuex";
 import Vise from "@/components/Vise";
 import store from "@/store.js";
-import { doc, deleteDoc, db } from "@/firebase.js";
+import {
+  doc,
+  deleteDoc,
+  db,
+  getDocs,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  query,
+  collection,
+} from "@/firebase.js";
 export default {
   name: "Post",
   data() {
     return {
       trenutnaObjava: null,
       uid: store.currentUser.uid,
+      likes: 0,
+      liked: true,
     };
   },
   mounted() {
     const objava = this.Objave.find((x) => x.id == this.id);
     this.trenutnaObjava = objava;
+    this.likes = this.trenutnaObjava.likes.length;
+    this.liked = this.trenutnaObjava.likes.includes(this.uid);
   },
   methods: {
+    async toggleLike() {
+      console.log("Likes: ", this.likes);
+      console.log("Liked: ", this.liked);
+      console.log("trenutnaObjava: ", this.trenutnaObjava);
+      console.log("UID: ", this.uid);
+
+      if (this.liked) {
+        this.likes -= 1;
+        this.liked = !this.liked;
+
+        await updateDoc(doc(collection(db, "objave"), this.trenutnaObjava.id), {
+          likes: arrayRemove(this.uid),
+        });
+      } else {
+        this.likes += 1;
+        this.liked = !this.liked;
+        await updateDoc(doc(collection(db, "objave"), this.trenutnaObjava.id), {
+          likes: arrayUnion(this.uid),
+        });
+      }
+    },
+
     async obrisiPost() {
-      await deleteDoc(doc(db, "objave", this.id));
-      console.log("Post Obrisan");
-      this.$router.go();
+      console.log(this.trenutnaObjava);
+      const objavaRef = doc(collection(db, "objave"), this.trenutnaObjava.id);
+      const komentariRef = await getDocs(
+        query(
+          collection(
+            doc(collection(db, "objave"), this.trenutnaObjava.id),
+            "komentari"
+          )
+        )
+      );
+      // komentariRef.forEach((komentar) => {
+      //   console.log(komentar.data());
+      // });
+
+      if (confirm("Jeste li sigurni da želite obrisati post?")) {
+        await deleteDoc(objavaRef);
+        komentariRef.forEach((komentar) => {
+          deleteDoc(komentar.ref);
+        });
+        console.log("Post Obrisan");
+        this.$router.go();
+      } else {
+        // Do nothing!
+        console.log("Odustao od brisanja");
+      }
     },
   },
   computed: {
@@ -87,6 +152,10 @@ export default {
 * {
   margin: 0px;
   padding: 0;
+}
+
+.klik {
+  cursor: pointer;
 }
 
 .box {
@@ -201,15 +270,23 @@ span {
 }
 
 @keyframes shake {
-  0% { transform: translate(0px, 0px) rotate(10deg); }
-  25% { transform: translate(0px, -0px) rotate(-10deg); }
-  50% { transform: translate(0px, 0px) rotate(10deg); }
-  75% { transform: translate(0px, 0px) rotate(-10deg); }
-  100% { transform: translate(0px, 0px) rotate(10deg); }
-
+  0% {
+    transform: translate(0px, 0px) rotate(10deg);
+  }
+  25% {
+    transform: translate(0px, -0px) rotate(-10deg);
+  }
+  50% {
+    transform: translate(0px, 0px) rotate(10deg);
+  }
+  75% {
+    transform: translate(0px, 0px) rotate(-10deg);
+  }
+  100% {
+    transform: translate(0px, 0px) rotate(10deg);
+  }
 }
 /* SHAKE EFFECT KRAJ */
-
 
 @media only screen and (max-width: 1000px) {
   .box {

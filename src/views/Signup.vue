@@ -45,6 +45,12 @@
             </div>
           </div>
         </form>
+        <b-alert
+          :show="kmail"
+          style="margin-top: 2rem; color: black"
+          variant="danger"
+          >Pogrešna email adresa</b-alert
+        >
       </div>
     </div>
   </div>
@@ -66,12 +72,17 @@ export default {
       lozinka2: "",
       user: null,
       eror: "",
+      kmail: false,
     };
   },
   methods: {
+    kriviEmail() {
+      this.kmail = !this.kmail;
+    },
     registriraj_korisnika() {
       if (this.lozinka1 !== this.lozinka2)
         return (this.eror = "Lozinke se ne podudaraju");
+
       const auth = getAuth();
       createUserWithEmailAndPassword(auth, this.mail, this.lozinka1)
         .then((userCredential) => {
@@ -95,6 +106,7 @@ export default {
 
         .catch((error) => {
           console.log(error);
+          this.kriviEmail();
           // ..
         });
     },
