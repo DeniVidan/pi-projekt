@@ -119,7 +119,7 @@
           </div>
           <div class="user-box">
             <input type="text" name="" v-model="newCijena" required />
-            <label>Cijena po satu</label>
+            <label>Cijena po satu (u KN)</label>
           </div>
           <div class="row1">
             <button

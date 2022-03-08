@@ -3,16 +3,16 @@
     <div class="">
       <form class="form-body" role="form">
         <div class="element">
-          <label for="">Ime i Prezime</label>
+          <label for="">Ime</label>
           <input type="text" placeholder="Ime" v-model="ime" />
         </div>
         <div class="element">
           <label for="">Lozinka</label>
-          <input type="password" placeholder="lozina" v-model="lozinka1" />
+          <input type="password" placeholder="Lozinka" v-model="lozinka1" />
         </div>
         <div class="element">
           <label for="">Ponovite lozinku</label>
-          <input type="password" placeholder="lozinka" v-model="lozinka2" />
+          <input type="password" placeholder="Ponovite lozinku" v-model="lozinka2" />
         </div>
         <div class="element" style="align-items: ">
           <label for="img">Select image:</label>

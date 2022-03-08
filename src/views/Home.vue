@@ -105,10 +105,10 @@ export default {
     display: block;
   }
 }
-@media only screen and (max-width: 577px) {
+@media only screen and (max-width: 575px) {
   .row {
     flex-direction: column;
-    width: 105% !important;
+    width: 104% !important;
   }
 }
 </style>

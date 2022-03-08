@@ -8,9 +8,9 @@
         <p>{{ ime }}</p>
       </div>
       <div class="col-md-2 favourite-icon">
+        <!--  -->
         <i
           class="far fa-times-circle mt-3"
-          style="font-size: 20px; padding-left: 40px"
         ></i>
       </div>
     </div>
@@ -30,7 +30,7 @@
         <i
           v-if="this.$store.currentUser"
           class="far fa-star"
-          style="font-size: 20px; padding-left: 10px"
+          style="font-size: 20px; padding-left: 30px"
         ></i>
       </div>
       <div class="col-md-10 content-box">
@@ -46,8 +46,8 @@
             :src="data.user.photoURL"
             alt=""
             class="image-box"
-            width="40px"
-            style="border-radius: 20px; padding-right: 7px;"
+            width="35px"
+            style="border-radius: 20px; padding-right: 7px"
           />
 
           <b>{{ data.user.displayName }}: </b>
@@ -62,8 +62,8 @@
             :src="slika"
             alt=""
             class=""
-            width="40px"
-            style="float: right; border-radius: 20px"
+            width="45px"
+            style="float: right; border-radius: 30px"
           />
         </div>
 
@@ -77,10 +77,9 @@
         <div class="col-sm-1 button">
           <button @click.prevent="addComment">
             <img
-              src="@/assets/send-message.png"
-              alt=""
-              style="float: left; align-items: center !important"
+              src="https://img.icons8.com/external-kmg-design-flat-kmg-design/32/000000/external-send-user-interface-kmg-design-flat-kmg-design.png"
             />
+            <!--  style="float: left; align-items: center !important; font-size: 20px; color: white;" -->
           </button>
         </div>
       </div>
@@ -189,7 +188,7 @@ export default {
   margin: 0px 0px 0px 0px !important;
 }
 .col-sm-1.image-box {
-  max-width: 50px !important; 
+  max-width: 50px !important;
 }
 .image {
   width: 80px;
@@ -206,7 +205,6 @@ export default {
 }
 .content-box > p {
   text-align: left;
-  margin: auto;
   margin-right: 50px;
   margin-left: 50px;
 }
@@ -216,29 +214,12 @@ export default {
 }
 .row.comment-section {
   padding-bottom: 20px;
-  margin-top: 50px !important;
+  margin-top: 20px !important;
   margin: auto;
   width: 90%;
 }
 .like-box {
   align-self: center;
-}
-.more-info {
-  margin-top: 30px !important;
-  justify-content: right;
-}
-.more-info > button {
-  border: none;
-  color: black;
-  float: right;
-  margin-right: 50px;
-  background-color: rgb(172, 172, 172);
-  padding: 3px 25px 3px 25px;
-  border-radius: 5px;
-  transition: transform 100ms;
-}
-.more-info > button:hover {
-  transform: scale(1.1);
 }
 input {
   background-color: #383838;
@@ -246,19 +227,32 @@ input {
   border: 1px solid white;
   border-radius: 20px;
   width: 90%;
+  box-shadow: none !important;
 }
 input:focus {
   border: 0px solid transparent;
+  box-shadow: none;
 }
 .button {
   align-self: center;
   max-width: 50px !important;
 }
-.card-text{
+.card-text {
   text-align: start;
   padding-left: 9rem;
+  padding-top: 0.3rem;
+}
+button{
+  border: none;
+  box-shadow: none;
+  background-color: transparent !important;
+}
+.fa-times-circle{
+  font-size: 20px; 
+  padding-left: 40px;
 }
 
+/* MEDIA */
 @media only screen and (max-width: 1000px) {
   .box1 {
     width: 100%;
@@ -312,13 +306,15 @@ input:focus {
     justify-content: center;
     padding-bottom: 0px;
   }
-  .more-info > button {
-    margin-right: 0px;
-  }
-
   .box1 {
     padding-bottom: 0px;
     border-radius: 0px !important;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .fa-times-circle{
+    font-size: 20px; 
+    padding-left: 0px;
   }
 }
 </style>

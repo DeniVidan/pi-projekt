@@ -9,14 +9,8 @@
       </div>
       <div class="col-md-2 favourite-icon">
         <i
-          v-if="this.$store.currentUser"
-          class="far fa-star"
-          style="font-size: 20px; margin-top: 15px"
-        ></i>
-
-        <i
           v-if="uid == korisnik_id"
-          class="far fa-trash"
+          class="far fa-trash-alt"
           style="font-size: 20px; margin-top: 15px; color: #b30000"
           @click="obrisiPost"
         ></i>
@@ -29,7 +23,12 @@
           lokacija
         }}
         <br />
-        <i v-if="this.$store.currentUser" class="far fa-thumbs-up mt-3"></i>
+        <i v-if="this.$store.currentUser" class="far fa-thumbs-up mt-3" style="font-size: 20px"></i>
+        <i
+          v-if="this.$store.currentUser"
+          class="far fa-star"
+          style="font-size: 20px; padding-left: 30px"
+        ></i>
       </div>
       <div class="col-md-10 content-box">
         <p>
@@ -125,7 +124,8 @@ export default {
 .col-md-7.name > p {
   float: left;
   transform: translate(0%, 210%);
-  font-weight: bold;
+  font-weight: bolder;
+  font-size: 17px;
 }
 .col-md-10.content-box > p {
   text-align: left;
@@ -193,6 +193,23 @@ span {
   border-top-right-radius: 20px !important;
   border-bottom-left-radius: 20px !important;
 }
+
+/* SHAKE EFFECT */
+.fa-trash-alt:hover {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(0px, 0px) rotate(10deg); }
+  25% { transform: translate(0px, -0px) rotate(-10deg); }
+  50% { transform: translate(0px, 0px) rotate(10deg); }
+  75% { transform: translate(0px, 0px) rotate(-10deg); }
+  100% { transform: translate(0px, 0px) rotate(10deg); }
+
+}
+/* SHAKE EFFECT KRAJ */
+
 
 @media only screen and (max-width: 1000px) {
   .box {
