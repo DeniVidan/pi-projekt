@@ -49,6 +49,9 @@ export default {
   border-radius: 20px;
   margin: auto;
 }
+.w3-modal{
+  backdrop-filter: blur(4px);
+}
 .w3-container {
   padding: 0;
 }

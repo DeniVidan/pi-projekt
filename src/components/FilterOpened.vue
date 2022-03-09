@@ -200,6 +200,7 @@ export default {
 }
 .modal {
   padding: 0px !important;
+  backdrop-filter: blur(4px);
 }
 .modal-dialog {
   margin: auto;

@@ -11,7 +11,7 @@
         <i
           @click="zatvori"
           class="far fa-times-circle mt-3"
-          style="font-size: 20px; padding-left: 40px"
+          style="font-size: 20px; margin-left: 40px; cursor: pointer;"
         ></i>
       </div>
     </div>
@@ -250,7 +250,6 @@ button {
 }
 .fa-times-circle {
   font-size: 20px;
-  padding-left: 40px;
 }
 
 @media only screen and (max-width: 1000px) {

@@ -14,11 +14,16 @@
         <div class="headerForma">
           <h2>Novi oglas</h2>
           <button class="gumbIkona" @click="modalShow = !modalShow">
-            <span
+            <!-- <span
               onclick="document.getElementById('id01').style.display='none'"
               class="close-button w3-button w3-display-topright"
               >&times;</span
-            >
+            > -->
+            <i
+              @click="zatvori"
+              class="far fa-times-circle mt-3 close-button w3-button w3-display-topright"
+              style="font-size: 20px; margin-right: 15px; cursor: pointer"
+            ></i>
           </button>
         </div>
 
@@ -154,6 +159,9 @@ export default {
       newCijena: "",
       time: "",
     };
+  },
+  props: {
+    zatvori: Function,
   },
   methods: {
     async newPost() {
@@ -427,11 +435,17 @@ option {
     }
   }
 }
-.close-button {
+/* .close-button {
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   font-size: 30px;
+} */
+
+.w3-button:hover{
+  background-color: transparent !important;
+  color: white !important;
 }
+
 @media only screen and (max-width: 600px) {
   .postForm {
     width: 100%;

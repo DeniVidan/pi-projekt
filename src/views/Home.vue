@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-sm-3">
           <NavbarOptions class="sideNavbar" />
-          <Filterr />
+          <Filterr class="fliter" />
         </div>
         <div class="col-sm-9">
           <AddPostButton />
@@ -91,7 +91,12 @@ export default {
 .filter-opened {
   display: none;
 }
-
+.sideNavbar{
+  margin-left: 15px;
+}
+.filter{
+  margin-left: 15px;
+}
 @media only screen and (max-width: 991px) {
   .row {
     flex-direction: column;
