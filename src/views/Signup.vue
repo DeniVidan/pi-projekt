@@ -39,9 +39,9 @@
               <a href="/login" style="text-decoration: underline">Prijavi se</a>
             </div>
             <div class="col-md-6">
-              <a href="#" class="button" @click.prevent="registriraj_korisnika">
+              <button href="#" class="button" @click.prevent="registriraj_korisnika">
                 Registriraj se
-              </a>
+              </button>
             </div>
           </div>
         </form>
@@ -215,6 +215,7 @@ body {
   border: 1px solid #ffdaae;
   border-radius: 10px;
   float: right;
+  background-color: transparent;
 }
 
 .login-box .button:hover {
@@ -245,6 +246,7 @@ div {
   .login-box {
     width: 100%;
     border-radius: 0px;
+    margin-top: 30px;
   }
   .brand-name {
     margin-top: 0px;

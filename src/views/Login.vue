@@ -37,11 +37,12 @@
               >
             </div>
             <div class="col-sm-5">
-              <a href="#" class="button" @click.prevent="prijavi_korisnika">
+              <button href="#" class="button" @click.prevent="prijavi_korisnika">
                 Prijava
-              </a>
+              </button>
             </div>
           </div>
+          <div class="error-message" v-if="error">{{ error }}</div>
         </form>
       </div>
     </div>
@@ -58,6 +59,7 @@ export default {
       mail: "",
       lozinka: "",
       user: null,
+      error: "",
     };
   },
   methods: {
@@ -71,8 +73,9 @@ export default {
           this.$router.replace({ name: "Home" });
           // ...
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((e) => {
+          this.error = "Netočna e-pošta ili lozinka !"
+          //console.log(error);
         });
     },
   },
@@ -199,6 +202,7 @@ body {
   border: 1px solid #ffdaae;
   border-radius: 10px;
   float: right;
+  background-color: transparent;
 }
 
 .login-box .button:hover {
@@ -207,7 +211,7 @@ body {
   border-radius: 5px;
   box-shadow: 0 0 3px #ffdaae, 0 0 5px #ffdaae, 0 0 25px #ffdaae,
     0 0 10px #ffdaae;
-}
+} 
 
 .login-box a span {
   position: absolute;
@@ -219,6 +223,13 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 50px #383838 inset !important;
     -webkit-text-fill-color: white !important;
+}
+.error-message{
+  background-color: rgba(255, 255, 255, 0.781);
+  color: red;
+  margin-top: 20px;
+  padding: 10px 0px;
+  font-size: 16px;
 }
 @media only screen and (max-width: 600px) {
   .login-box {
