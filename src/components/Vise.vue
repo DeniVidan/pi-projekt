@@ -11,6 +11,11 @@
             v-if="trenutnaObjava"
             :id="trenutnaObjava.id"
             :zatvori="zatvori"
+            :trenutnaObjava="trenutnaObjava"
+            :liked="liked"
+            :toggleLike="toggleLike"
+            :favorited="favorited"
+            :toggleFavorite="toggleFavorite"
           />
         </div>
       </div>
@@ -25,6 +30,10 @@ export default {
   name: "Vise",
   props: {
     trenutnaObjava: Object,
+    liked: Boolean,
+    toggleLike: Function,
+    favorited: Boolean,
+    toggleFavorite: Function,
   },
   components: {
     PostOpened,
@@ -49,7 +58,7 @@ export default {
   border-radius: 20px;
   margin: auto;
 }
-.w3-modal{
+.w3-modal {
   backdrop-filter: blur(4px);
 }
 .w3-container {

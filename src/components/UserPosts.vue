@@ -1,6 +1,6 @@
 <template>
   <div class="UserPosts">
-    <div class="post">
+    <div class="post" v-if="Objave.length > 0">
       <Post
         v-for="Objava in Objave"
         :key="Objava.id"
@@ -12,6 +12,7 @@
         :id="Objava.id"
       />
     </div>
+    <div v-else>Nemate objavljenih postova</div>
   </div>
 </template>
 
