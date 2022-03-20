@@ -28,13 +28,11 @@
           v-if="this.$store.currentUser"
           class="fa-thumbs-up mt-3 klik"
           :class="liked ? 'fas' : 'far'"
-          style="font-size: 20px"
           @click="toggleLike()"
         ></i>
         <i
           v-if="this.$store.currentUser"
           class="far fa-star klik"
-          style="font-size: 20px; padding-left: 30px"
         ></i>
       </div>
       <div class="col-md-10 content-box">
@@ -262,6 +260,13 @@ span {
   border-top-right-radius: 20px !important;
   border-bottom-left-radius: 20px !important;
 }
+.fa-thumbs-up,.fa-star{
+  font-size: 20px;
+}
+.fa-star{
+  margin-left: 30px;
+}
+
 
 /* SHAKE EFFECT */
 .fa-trash-alt:hover {

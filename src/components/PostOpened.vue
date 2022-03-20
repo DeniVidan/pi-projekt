@@ -8,11 +8,7 @@
         <p>{{ ime }}</p>
       </div>
       <div class="col-md-2 favourite-icon">
-        <i
-          @click="zatvori"
-          class="far fa-times-circle mt-3"
-          style="font-size: 20px; margin-left: 40px; cursor: pointer;"
-        ></i>
+        <i @click="zatvori" class="far fa-times-circle mt-3"></i>
       </div>
     </div>
 
@@ -23,16 +19,8 @@
         />
         {{ lokacija }}
         <br />
-        <i
-          v-if="this.$store.currentUser"
-          class="far fa-thumbs-up mt-3"
-          style="font-size: 20px"
-        ></i>
-        <i
-          v-if="this.$store.currentUser"
-          class="far fa-star"
-          style="font-size: 20px; padding-left: 30px"
-        ></i>
+        <i v-if="this.$store.currentUser" class="far fa-thumbs-up mt-3"></i>
+        <i v-if="this.$store.currentUser" class="far fa-star"></i>
       </div>
       <div class="col-md-10 content-box">
         <p>
@@ -42,18 +30,23 @@
     </div>
     <div class="row">
       <div class="col mt-3">
-        <p class="card-text" v-for="data in comments" :key="data.id">
-          <img
-            :src="data.user.photoURL"
-            alt=""
-            class="image-box"
-            width="35px"
-            style="border-radius: 20px; padding-right: 7px"
-          />
-
-          <b>{{ data.user.displayName }}: </b>
-          {{ data.comment }}
-        </p>
+        <div class="card-text" v-for="data in comments" :key="data.id">
+          <div class="commented-image" style="padding-right: 7px">
+            <img
+              :src="data.user.photoURL"
+              alt=""
+              class="image-box"
+              width="35px"
+              style="border-radius: 20px;"
+            />
+          </div>
+          <div class="commented-content">
+            <p style="margin-left: 0.6rem; color:black; font-weight: bold;">{{ data.user.displayName }}  </p>
+            <div class="one-comment">
+              {{ data.comment }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <form action="">
@@ -166,7 +159,9 @@ export default {
   padding: 0;
   color: white;
 }
-
+.col{
+  
+}
 .box1 {
   margin: 0px;
   background-color: #383838;
@@ -238,10 +233,11 @@ input:focus {
   align-self: center;
   max-width: 50px !important;
 }
-.card-text {
+.commented-content {
   text-align: start;
-  padding-left: 9rem;
-  padding-top: 0.3rem;
+  background-color: rgb(212, 212, 212);
+  border-radius: 15px;
+  padding: 0.5rem;
 }
 button {
   border: none;
@@ -250,7 +246,34 @@ button {
 }
 .fa-times-circle {
   font-size: 20px;
+  font-size: 20px;
+  margin-left: 40px;
+  cursor: pointer;
 }
+.fa-thumbs-up,
+.fa-star {
+  font-size: 20px;
+  cursor: pointer;
+}
+.fa-star {
+  margin-left: 30px;
+}
+.one-comment {
+  background-color: rgb(212, 212, 212);
+  border-radius: 15px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  padding: 2px 10px;
+  color: black;
+}
+.card-text{
+  display: flex;
+  flex-direction: row;
+  margin-left: 8rem;
+  margin-top: 0.6rem;
+  margin-right: 2rem;
+}
+
 
 @media only screen and (max-width: 1000px) {
   .box1 {
@@ -311,10 +334,19 @@ button {
     border-radius: 0px !important;
   }
 }
+@media only screen and (max-width: 992px) {
+  .card-text {
+    margin-left: 3rem;
+  }
+}
 @media only screen and (max-width: 767px) {
   .fa-times-circle {
     font-size: 20px;
     padding-left: 0px;
+    margin-left: 0px;
+  }
+  .card-text {
+    margin-left: 2rem;
   }
 }
 </style>
