@@ -12,19 +12,22 @@
 
           <!-- Button trigger modal -->
           <FilterOpened class="filter-opened" style="margin-left: 65%" />
-
-          <Post
-            class="post"
-            v-for="Objava in Objave"
-            :key="Objava.id"
-            :id="Objava.id"
-            :opis="Objava.opis"
-            :ime="Objava.korisnik.ime"
-            :lokacija="Objava.lokacija"
-            :slika="Objava.korisnik.imageURL"
-            :korisnik_id="Objava.korisnik.id"
-            :likes="Objava.likes"
-          />
+          <div v-if="Objave.length > 0">
+            <Post
+              class="post"
+              v-for="Objava in Objave"
+              :key="Objava.id"
+              :id="Objava.id"
+              :opis="Objava.opis"
+              :ime="Objava.korisnik.ime"
+              :lokacija="Objava.lokacija"
+              :slika="Objava.korisnik.imageURL"
+              :korisnik_id="Objava.korisnik.id"
+              :likes="Objava.likes"
+              :favorite="Objava.favorite"
+            />
+          </div>
+          <div v-else>Nema objavljenih postova</div>
         </div>
       </div>
     </div>
@@ -91,10 +94,10 @@ export default {
 .filter-opened {
   display: none;
 }
-.sideNavbar{
+.sideNavbar {
   margin-left: 15px;
 }
-.filter{
+.filter {
   margin-left: 15px;
 }
 @media only screen and (max-width: 991px) {

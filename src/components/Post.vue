@@ -32,7 +32,10 @@
         ></i>
         <i
           v-if="this.$store.currentUser"
-          class="far fa-star klik"
+          class="fa-star klik"
+          :class="favorited ? 'fas' : 'far'"
+          style="font-size: 20px; padding-left: 30px"
+          @click="toggleFavorite()"
         ></i>
       </div>
       <div class="col-md-10 content-box">
@@ -41,7 +44,13 @@
         </p>
       </div>
     </div>
-    <Vise :trenutnaObjava="trenutnaObjava" />
+    <Vise
+      :trenutnaObjava="trenutnaObjava"
+      :liked="liked"
+      :toggleLike="toggleLike"
+      :favorited="favorited"
+      :toggleFavorite="toggleFavorite"
+    />
   </div>
 </template>
 
@@ -69,6 +78,8 @@ export default {
       uid: store.currentUser.uid,
       likes: 0,
       liked: true,
+      favorite: 0,
+      favorited: true,
     };
   },
   mounted() {
@@ -76,8 +87,27 @@ export default {
     this.trenutnaObjava = objava;
     this.likes = this.trenutnaObjava.likes.length;
     this.liked = this.trenutnaObjava.likes.includes(this.uid);
+    this.favorite = this.trenutnaObjava.favorite.length;
+    this.favorited = this.trenutnaObjava.favorite.includes(this.uid);
   },
   methods: {
+    async toggleFavorite() {
+      console.log(this.favorited);
+      if (this.favorited) {
+        this.favorited = !this.favorited;
+        await updateDoc(doc(collection(db, "objave"), this.trenutnaObjava.id), {
+          favorite: arrayRemove(this.uid),
+        });
+
+        return false;
+      } else {
+        this.favorited = !this.favorited;
+        await updateDoc(doc(collection(db, "objave"), this.trenutnaObjava.id), {
+          favorite: arrayUnion(this.uid),
+        });
+        return true;
+      }
+    },
     async toggleLike() {
       console.log("Likes: ", this.likes);
       console.log("Liked: ", this.liked);
@@ -91,12 +121,14 @@ export default {
         await updateDoc(doc(collection(db, "objave"), this.trenutnaObjava.id), {
           likes: arrayRemove(this.uid),
         });
+        return false;
       } else {
         this.likes += 1;
         this.liked = !this.liked;
         await updateDoc(doc(collection(db, "objave"), this.trenutnaObjava.id), {
           likes: arrayUnion(this.uid),
         });
+        return true;
       }
     },
 

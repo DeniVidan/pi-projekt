@@ -19,8 +19,21 @@
         />
         {{ lokacija }}
         <br />
-        <i v-if="this.$store.currentUser" class="far fa-thumbs-up mt-3"></i>
-        <i v-if="this.$store.currentUser" class="far fa-star"></i>
+        <b class="pr-2">{{ brojLajkova }}</b>
+        <i
+          v-if="this.$store.currentUser"
+          class="far fa-thumbs-up mt-3 klik"
+          style="font-size: 20px"
+          :class="liked ? 'fas' : 'far'"
+          @click="likePressed()"
+        ></i>
+        <i
+          v-if="this.$store.currentUser"
+          class="fa-star klik"
+          :class="favorited ? 'fas' : 'far'"
+          style="font-size: 20px; padding-left: 30px"
+          @click="toggleFavorite()"
+        ></i>
       </div>
       <div class="col-md-10 content-box">
         <p>
@@ -53,7 +66,7 @@
       <div class="row comment-section">
         <div class="col-sm-1 image-box">
           <img
-            :src="slika"
+            :src="photoURL"
             alt=""
             class=""
             width="45px"
@@ -64,6 +77,7 @@
         <div class="col-sm-10 comment">
           <input
             type="text"
+            required
             placeholder="Napiši komentar..."
             v-model="newComment"
           />
@@ -106,14 +120,26 @@ export default {
       ime: "",
       lokacija: "",
       slika: "",
+      brojLajkova: this.brojLajkova || 0,
     };
   },
   props: {
     id: String,
     zatvori: Function,
+    trenutnaObjava: Object,
+    liked: Boolean,
+    toggleLike: Function,
+    favorited: Boolean,
+    toggleFavorite: Function,
   },
 
   methods: {
+    async likePressed() {
+      const liked = await this.toggleLike();
+      if (liked) {
+        this.brojLajkova++;
+      } else this.brojLajkova--;
+    },
     async getObjava() {
       const objava = await getDoc(doc(db, "objave", this.id));
 

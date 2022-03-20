@@ -21,7 +21,13 @@
             > -->
             <i
               @click="zatvori"
-              class="far fa-times-circle mt-3 close-button w3-button w3-display-topright"
+              class="
+                far
+                fa-times-circle
+                mt-3
+                close-button
+                w3-button w3-display-topright
+              "
               style="font-size: 20px; margin-right: 15px; cursor: pointer"
             ></i>
           </button>
@@ -181,6 +187,7 @@ export default {
           imageURL: store.currentUser.photoURL,
         },
         likes: [],
+        favorite: [],
       };
       try {
         const docRef = await addDoc(collection(db, "objave"), newObjava);
@@ -441,7 +448,7 @@ option {
   font-size: 30px;
 } */
 
-.w3-button:hover{
+.w3-button:hover {
   background-color: transparent !important;
   color: white !important;
 }
