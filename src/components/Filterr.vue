@@ -4,7 +4,7 @@
       <a class="filter-mobile" href="#">
         <img src="@/assets/filter.png" alt="" />&nbsp Filter</a
       >
-      <div class="burek">
+      <div class="fil">
         <div class="filter-item naslov">Filtriraj rezultate</div>
         <div class="filter-item kategorija">
           <b>Kategorija</b> <br />
@@ -83,12 +83,12 @@
                 <label for="soboslikanje">Soboslikanje</label>
               </li>
               <li>
-                <input type="radio" id="odabir1" name="type" />
-                <label for="odabir1">Odabir1</label>
+                <input type="radio" id="automehanicar" name="type" />
+                <label for="automehanicar">Automehaničar</label>
               </li>
               <li>
-                <input type="radio" id="odabir2" name="type" />
-                <label for="odabir2">Odabir2</label>
+                <input type="radio" id="ostalo" name="type" />
+                <label for="ostalo">Ostalo</label>
               </li>
             </ul>
           </div>
@@ -143,7 +143,7 @@ export default {
   methods: {
     ...mapActions({ filterObjave: "filterPosts", getPosts: "getPosts" }),
     debugMe() {
-      console.log(this.vrsta);
+      //console.log(this.vrsta);
     },
     makniFilter() {
       this.isFiltered = false;
@@ -257,7 +257,7 @@ label {
 }
 
 @media only screen and (max-width: 991px) {
-  .burek {
+  .fil {
     display: none;
   }
   .box {

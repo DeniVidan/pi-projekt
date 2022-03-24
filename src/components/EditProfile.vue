@@ -12,10 +12,14 @@
         </div>
         <div class="element">
           <label for="">Ponovite lozinku</label>
-          <input type="password" placeholder="Ponovite lozinku" v-model="lozinka2" />
+          <input
+            type="password"
+            placeholder="Ponovite lozinku"
+            v-model="lozinka2"
+          />
         </div>
         <div class="element" style="align-items: ">
-          <label for="img">Select image:</label>
+          <label for="img">Odaberi sliku:</label>
           <input
             type="file"
             id="img"
@@ -63,7 +67,7 @@ export default {
 
   methods: {
     async profilePicture() {
-      console.log("RADIM");
+      //console.log("RADIM");
       const randomId = randomID();
       const storageRef = ref(
         storage,
@@ -86,7 +90,7 @@ export default {
       if (this.lozinka1) {
         if (this.lozinka1 == this.lozinka2) {
           await updatePassword(getAuth().currentUser, this.lozinka1);
-          console.log("Lozinka promjenjena!");
+          //console.log("Lozinka promjenjena!");
         } else {
           alert("Lozinke nisu iste!");
         }

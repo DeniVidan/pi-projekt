@@ -1,12 +1,9 @@
 <template>
   <div class="row more-info" v-if="trenutnaObjava">
-    <button @click="test" class="w3-button">Više</button>
+    <button @click="test" class="w3-button">Više - {{ cijena }}kn</button>
     <div :id="trenutnaObjava.id" class="w3-modal">
       <div class="w3-modal-content">
         <div class="w3-container">
-          <!-- <span @click="zatvori" class="w3-button w3-display-topright"
-            >&times;</span >-->
-
           <PostOpened
             v-if="trenutnaObjava"
             :id="trenutnaObjava.id"
@@ -17,6 +14,7 @@
             :favorited="favorited"
             :toggleFavorite="toggleFavorite"
             :brojLajkova="brojLajkova"
+            :broj="broj"
           />
         </div>
       </div>
@@ -36,6 +34,8 @@ export default {
     favorited: Boolean,
     toggleFavorite: Function,
     brojLajkova: Number,
+    cijena: String,
+    broj: String,
   },
   components: {
     PostOpened,
@@ -49,7 +49,7 @@ export default {
       document.getElementById(`${this.trenutnaObjava.id}`).style.display =
         "block";
 
-      console.log(this.trenutnaObjava.id);
+      //console.log(this.trenutnaObjava.id);
     },
   },
 };

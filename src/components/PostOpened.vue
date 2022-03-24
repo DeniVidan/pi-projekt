@@ -6,6 +6,8 @@
       </div>
       <div class="col-md-7 name">
         <p>{{ ime }}</p>
+        <br />
+        <p style="font-weight: normal !important">Kontakt: {{ broj }}</p>
       </div>
       <div class="col-md-2 favourite-icon">
         <i @click="zatvori" class="far fa-times-circle mt-3"></i>
@@ -14,9 +16,7 @@
 
     <div class="row post-info">
       <div class="col-md-2 like-box mt-3">
-        <img
-          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMGMtNC4xOTggMC04IDMuNDAzLTggNy42MDIgMCA2LjI0MyA2LjM3NyA2LjkwMyA4IDE2LjM5OCAxLjYyMy05LjQ5NSA4LTEwLjE1NSA4LTE2LjM5OCAwLTQuMTk5LTMuODAxLTcuNjAyLTgtNy42MDJ6bTAgMTFjLTEuNjU3IDAtMy0xLjM0My0zLTNzMS4zNDItMyAzLTMgMyAxLjM0MyAzIDMtMS4zNDMgMy0zIDN6Ii8+PC9zdmc+"
-        />
+        <i class="fas fa-map-marker-alt" style="font-size: 1.3rem"></i>
         {{ lokacija }}
         <br />
         <b class="pr-2">{{ brojLajkova }}</b>
@@ -31,7 +31,7 @@
           v-if="this.$store.currentUser"
           class="fa-star klik"
           :class="favorited ? 'fas' : 'far'"
-          style="font-size: 20px; padding-left: 30px"
+          style="font-size: 20px; margin-left: 30px"
           @click="toggleFavorite()"
         ></i>
       </div>
@@ -98,15 +98,7 @@
 
 <script>
 import store from "@/store";
-import {
-  db,
-  firebase,
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-} from "@/firebase";
+import { db, addDoc, collection, doc, getDoc, getDocs } from "@/firebase";
 export default {
   name: "PostOpened",
   mounted() {
@@ -133,14 +125,12 @@ export default {
     favorited: Boolean,
     toggleFavorite: Function,
     brojLajkova: Number,
+    broj: String,
   },
 
   methods: {
     async likePressed() {
-      const liked = await this.toggleLike();
-      if (liked) {
-        this.brojLajkova++;
-      } else this.brojLajkova--;
+      await this.toggleLike();
     },
     async getObjava() {
       const objava = await getDoc(doc(db, "objave", this.id));
@@ -154,7 +144,7 @@ export default {
     },
     async addComment() {
       if (!this.newComment.length > 0) {
-        return alert("NEMERE");
+        return alert("Ne možete poslati prazan komentar!");
       }
       await addDoc(collection(doc(db, "objave", this.id), "komentari"), {
         user: {
@@ -285,9 +275,7 @@ button {
   font-size: 20px;
   cursor: pointer;
 }
-.fa-star {
-  margin-left: 30px;
-}
+
 .one-comment {
   background-color: rgb(212, 212, 212);
   border-radius: 15px;

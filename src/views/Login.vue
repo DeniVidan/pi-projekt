@@ -73,7 +73,7 @@ export default {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log("PRIJAVIO SI SE");
+          //console.log("PRIJAVIO SI SE");
           this.$router.replace({ name: "Home" });
           // ...
         })
