@@ -50,6 +50,7 @@
       :toggleLike="toggleLike"
       :favorited="favorited"
       :toggleFavorite="toggleFavorite"
+      :brojLajkova="likes"
     />
   </div>
 </template>
@@ -57,6 +58,8 @@
 <script>
 import PostOpened from "@/components/PostOpened.vue";
 import { mapGetters } from "vuex";
+
+import { mapActions } from "vuex";
 import Vise from "@/components/Vise";
 import store from "@/store.js";
 import {
@@ -79,18 +82,14 @@ export default {
       likes: 0,
       liked: true,
       favorite: 0,
-      favorited: true,
+      favorited: false,
     };
   },
-  mounted() {
-    const objava = this.Objave.find((x) => x.id == this.id);
-    this.trenutnaObjava = objava;
-    this.likes = this.trenutnaObjava.likes.length;
-    this.liked = this.trenutnaObjava.likes.includes(this.uid);
-    this.favorite = this.trenutnaObjava.favorite.length;
-    this.favorited = this.trenutnaObjava.favorite.includes(this.uid);
+  async mounted() {
+    await this.updateObjava();
   },
   methods: {
+    ...mapActions({ refreshStore: "getPosts" }),
     async toggleFavorite() {
       console.log(this.favorited);
       if (this.favorited) {
@@ -98,13 +97,15 @@ export default {
         await updateDoc(doc(collection(db, "objave"), this.trenutnaObjava.id), {
           favorite: arrayRemove(this.uid),
         });
-
+        await this.updateObjava();
+        this.refreshStore();
         return false;
       } else {
         this.favorited = !this.favorited;
         await updateDoc(doc(collection(db, "objave"), this.trenutnaObjava.id), {
           favorite: arrayUnion(this.uid),
         });
+        this.refreshStore();
         return true;
       }
     },
@@ -121,6 +122,7 @@ export default {
         await updateDoc(doc(collection(db, "objave"), this.trenutnaObjava.id), {
           likes: arrayRemove(this.uid),
         });
+        this.refreshStore();
         return false;
       } else {
         this.likes += 1;
@@ -128,10 +130,19 @@ export default {
         await updateDoc(doc(collection(db, "objave"), this.trenutnaObjava.id), {
           likes: arrayUnion(this.uid),
         });
+        this.refreshStore();
         return true;
       }
     },
-
+    async updateObjava() {
+      const objava = this.Objave.find((x) => x.id == this.id);
+      this.trenutnaObjava = objava;
+      this.likes = this.trenutnaObjava.likes.length;
+      this.liked = this.trenutnaObjava.likes.includes(this.uid);
+      this.favorite = this.trenutnaObjava.favorite.length;
+      this.favorited = this.trenutnaObjava.favorite.includes(this.uid);
+      console.log("JELI FAVORITEANO", this.favorited);
+    },
     async obrisiPost() {
       console.log(this.trenutnaObjava);
       const objavaRef = doc(collection(db, "objave"), this.trenutnaObjava.id);
@@ -292,13 +303,13 @@ span {
   border-top-right-radius: 20px !important;
   border-bottom-left-radius: 20px !important;
 }
-.fa-thumbs-up,.fa-star{
+.fa-thumbs-up,
+.fa-star {
   font-size: 20px;
 }
-.fa-star{
+.fa-star {
   margin-left: 30px;
 }
-
 
 /* SHAKE EFFECT */
 .fa-trash-alt:hover {

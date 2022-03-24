@@ -9,7 +9,7 @@
         <i class="far fa-plus-square" style="font-size: 18px"></i> Dodaj oglas
       </button>
     </div>
-    <div class="modalForm" v-if="modalShow">
+    <div class="modalForm" v-if="modalShow" id="modal">
       <div class="postForm">
         <div class="headerForma">
           <h2>Novi oglas</h2>
@@ -166,11 +166,17 @@ export default {
       time: "",
     };
   },
-  props: {
-    zatvori: Function,
-  },
+
   methods: {
     async newPost() {
+      if (
+        !this.newOpis ||
+        !this.newVrsta ||
+        !(this.newCijena > 0) ||
+        !this.newLokacija
+      ) {
+        return alert("ne radi");
+      }
       console.log("Postam");
       this.isSending = true;
       const newObjava = {
@@ -196,6 +202,9 @@ export default {
         console.error("Greška kod dodavanja oglasa ", e);
       }
       this.$router.go();
+    },
+    zatvori() {
+      document.getElementById(`modal`).style.display = "none";
     },
   },
 };

@@ -37,7 +37,11 @@
               >
             </div>
             <div class="col-sm-5">
-              <button href="#" class="button" @click.prevent="prijavi_korisnika">
+              <button
+                href="#"
+                class="button"
+                @click.prevent="prijavi_korisnika"
+              >
                 Prijava
               </button>
             </div>
@@ -74,7 +78,7 @@ export default {
           // ...
         })
         .catch((e) => {
-          this.error = "Netočna e-pošta ili lozinka !"
+          this.error = "Netočna e-pošta ili lozinka !";
           //console.log(error);
         });
     },
@@ -211,20 +215,20 @@ body {
   border-radius: 5px;
   box-shadow: 0 0 3px #ffdaae, 0 0 5px #ffdaae, 0 0 25px #ffdaae,
     0 0 10px #ffdaae;
-} 
+}
 
 .login-box a span {
   position: absolute;
   display: block;
 }
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 50px #383838 inset !important;
-    -webkit-text-fill-color: white !important;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 50px #383838 inset !important;
+  -webkit-text-fill-color: white !important;
 }
-.error-message{
+.error-message {
   background-color: rgba(255, 255, 255, 0.781);
   color: red;
   margin-top: 20px;

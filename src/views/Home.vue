@@ -12,7 +12,7 @@
 
           <!-- Button trigger modal -->
           <FilterOpened class="filter-opened" style="margin-left: 65%" />
-          <div v-if="Objave.length > 0">
+          <div v-if="Objave && Objave.length && Objave.length > 0">
             <Post
               class="post"
               v-for="Objava in Objave"
@@ -44,6 +44,7 @@ import NavbarOptions from "@/components/NavbarOptions.vue";
 import Filterr from "@/components/Filterr.vue";
 
 import { mapGetters } from "vuex";
+
 import FilterOpened from "@/components/FilterOpened.vue";
 
 export default {

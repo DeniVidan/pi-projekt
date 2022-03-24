@@ -50,11 +50,13 @@
               alt=""
               class="image-box"
               width="35px"
-              style="border-radius: 20px;"
+              style="border-radius: 20px"
             />
           </div>
           <div class="commented-content">
-            <p style="margin-left: 0.6rem; color:black; font-weight: bold;">{{ data.user.displayName }}  </p>
+            <p style="margin-left: 0.6rem; color: black; font-weight: bold">
+              {{ data.user.displayName }}
+            </p>
             <div class="one-comment">
               {{ data.comment }}
             </div>
@@ -120,7 +122,6 @@ export default {
       ime: "",
       lokacija: "",
       slika: "",
-      brojLajkova: this.brojLajkova || 0,
     };
   },
   props: {
@@ -131,6 +132,7 @@ export default {
     toggleLike: Function,
     favorited: Boolean,
     toggleFavorite: Function,
+    brojLajkova: Number,
   },
 
   methods: {
@@ -151,6 +153,9 @@ export default {
       this.slika = data.korisnik.imageURL;
     },
     async addComment() {
+      if (!this.newComment.length > 0) {
+        return alert("NEMERE");
+      }
       await addDoc(collection(doc(db, "objave", this.id), "komentari"), {
         user: {
           id: store.currentUser.uid,
@@ -160,7 +165,7 @@ export default {
         comment: this.newComment,
         posted_at: Date.now(),
       });
-      this.newComment = null;
+      this.newComment = "";
       this.getComments();
     },
     // hvatanje komentara
@@ -185,8 +190,7 @@ export default {
   padding: 0;
   color: white;
 }
-.col{
-  
+.col {
 }
 .box1 {
   margin: 0px;
@@ -292,14 +296,13 @@ button {
   padding: 2px 10px;
   color: black;
 }
-.card-text{
+.card-text {
   display: flex;
   flex-direction: row;
   margin-left: 8rem;
   margin-top: 0.6rem;
   margin-right: 2rem;
 }
-
 
 @media only screen and (max-width: 1000px) {
   .box1 {

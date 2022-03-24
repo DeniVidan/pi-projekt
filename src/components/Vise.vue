@@ -16,6 +16,7 @@
             :toggleLike="toggleLike"
             :favorited="favorited"
             :toggleFavorite="toggleFavorite"
+            :brojLajkova="brojLajkova"
           />
         </div>
       </div>
@@ -34,6 +35,7 @@ export default {
     toggleLike: Function,
     favorited: Boolean,
     toggleFavorite: Function,
+    brojLajkova: Number,
   },
   components: {
     PostOpened,

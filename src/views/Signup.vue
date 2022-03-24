@@ -39,7 +39,11 @@
               <a href="/login" style="text-decoration: underline">Prijavi se</a>
             </div>
             <div class="col-md-6">
-              <button href="#" class="button" @click.prevent="registriraj_korisnika">
+              <button
+                href="#"
+                class="button"
+                @click.prevent="registriraj_korisnika"
+              >
                 Registriraj se
               </button>
             </div>
@@ -49,8 +53,14 @@
           :show="kmail"
           style="margin-top: 2rem; color: black"
           variant="danger"
-          >Pogrešna email adresa</b-alert
-        >
+          >Pogrešna email adresa
+        </b-alert>
+        <b-alert
+          :show="eror"
+          style="margin-top: 2rem; color: black"
+          variant="danger"
+          >Pogrešna lozinka
+        </b-alert>
       </div>
     </div>
   </div>
@@ -71,7 +81,7 @@ export default {
       lozinka1: "",
       lozinka2: "",
       user: null,
-      eror: "",
+      eror: false,
       kmail: false,
     };
   },
@@ -80,9 +90,9 @@ export default {
       this.kmail = !this.kmail;
     },
     registriraj_korisnika() {
-      if (this.lozinka1 !== this.lozinka2)
-        return (this.eror = "Lozinke se ne podudaraju");
-
+      if (this.lozinka1 !== this.lozinka2) {
+        this.eror = true;
+      }
       const auth = getAuth();
       createUserWithEmailAndPassword(auth, this.mail, this.lozinka1)
         .then((userCredential) => {
