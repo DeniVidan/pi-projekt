@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     async getMyPosts() {
-      console.log("Dohvačam tvoje postove");
+      //console.log("Dohvačam tvoje postove");
       const q = query(
         collection(db, "objave"),
         where("uid", "==", this.id),

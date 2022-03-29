@@ -1,4 +1,3 @@
-!
 <template>
   <div class="profile">
     <Navbar style="z-index: 2" />

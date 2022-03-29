@@ -56,7 +56,7 @@ export default new Vuex.Store({
       commit("filterObjave", newObjave);
     },
     async getPosts({ commit }) {
-      console.log("Dohvačam postove iz Firebase");
+      // console.log("Dohvačam postove iz Firebase");
       const querySnapshot = await query(
         collection(db, "objave"),
         orderBy("time", "desc")

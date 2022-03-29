@@ -1,59 +1,5 @@
 <template>
-  <!-- <img src="@/assets/background_V2.svg" alt="" class="bg-img" /> -->
   <div id="app">
-    <!--        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">majstor</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <form class="form-inline my-2 my-lg-0">
-            <input
-              class="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-              Search
-            </button>
-          </form>
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Vrt</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Na kući</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="#">Po kući</a>
-            </li>
-          </ul>
-
-          <div class="account">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="/login">log in</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/signup">sign up</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav> -->
-
     <router-view />
   </div>
 </template>
@@ -66,7 +12,7 @@ import { mapActions } from "vuex";
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log("User: " + user.email);
+    //console.log("User: " + user.email);
     store.currentUser = user;
     // ...
   } else {

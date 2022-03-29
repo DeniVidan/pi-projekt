@@ -1,4 +1,3 @@
-!
 <template>
   <div class="profile">
     <Navbar style="z-index: 2" />
@@ -38,7 +37,7 @@ import Navbar from "@/components/Navbar.vue";
 import NavbarOptions from "@/components/NavbarOptions.vue";
 import Post from "@/components/Post.vue";
 import store from "@/store.js";
-import { collection, getDocs, db, query, where, orderBy } from "@/firebase";
+import { collection, getDocs, db, query, where } from "@/firebase";
 
 export default {
   name: "favourite",
@@ -69,7 +68,7 @@ export default {
         Objave.push({ id: doc.id, ...doc.data() });
       });
       this.Objave = Objave;
-      console.log(this.Objave);
+      //console.log(this.Objave);
     },
   },
 };

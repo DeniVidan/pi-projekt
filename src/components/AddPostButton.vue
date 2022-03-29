@@ -6,19 +6,15 @@
         v-if="this.$store.currentUser"
         @click="modalShow = !modalShow"
       >
-        <i class="far fa-plus-square" style="font-size: 18px"></i> Dodaj oglas
+        <i class="far fa-plus-square" style="font-size: 18px"></i
+        ><b> Dodaj oglas </b>
       </button>
     </div>
-    <div class="modalForm" v-if="modalShow">
+    <div class="modalForm" v-if="modalShow" id="modal">
       <div class="postForm">
         <div class="headerForma">
           <h2>Novi oglas</h2>
           <button class="gumbIkona" @click="modalShow = !modalShow">
-            <!-- <span
-              onclick="document.getElementById('id01').style.display='none'"
-              class="close-button w3-button w3-display-topright"
-              >&times;</span
-            > -->
             <i
               @click="zatvori"
               class="
@@ -102,20 +98,20 @@
                 <li>
                   <input
                     type="radio"
-                    value="odabir1"
+                    value="automehanicar"
                     name="isto"
                     @change="(e) => (this.newVrsta = e.target.value)"
                   />
-                  <label for="odabir1"> Odabir1</label>
+                  <label for="automehanicar"> Automehaničar</label>
                 </li>
                 <li>
                   <input
                     type="radio"
-                    value="odabir2"
+                    value="ostalo"
                     name="isto"
                     @change="(e) => (this.newVrsta = e.target.value)"
                   />
-                  <label for="odabir2"> Odabir2</label>
+                  <label for="ostalo"> Ostalo</label>
                 </li>
               </ul>
             </div>
@@ -127,6 +123,10 @@
           <div class="user-box">
             <input type="text" name="" v-model="newLokacija" required />
             <label>Lokacija</label>
+          </div>
+          <div class="user-box">
+            <input type="text" name="" v-model="newBroj" required />
+            <label>Kontakt broj</label>
           </div>
           <div class="user-box">
             <input type="text" name="" v-model="newCijena" required />
@@ -164,14 +164,25 @@ export default {
       newLokacija: "",
       newCijena: "",
       time: "",
+      newBroj: "",
     };
   },
-  props: {
-    zatvori: Function,
-  },
+
   methods: {
     async newPost() {
-      console.log("Postam");
+      if (isNaN(this.newCijena)) {
+        return alert("Cijena mora biti broj!");
+      }
+      if (
+        !this.newOpis ||
+        !this.newVrsta ||
+        !(this.newCijena > 0) ||
+        !this.newLokacija
+      ) {
+        return alert("Sva polja moraju biti popunjena!");
+      }
+
+      //console.log("Postam");
       this.isSending = true;
       const newObjava = {
         tip: this.newTip,
@@ -188,14 +199,18 @@ export default {
         },
         likes: [],
         favorite: [],
+        broj: this.newBroj,
       };
       try {
         const docRef = await addDoc(collection(db, "objave"), newObjava);
-        console.log("Spremljeno");
+        //console.log("Spremljeno");
       } catch (e) {
         console.error("Greška kod dodavanja oglasa ", e);
       }
       this.$router.go();
+    },
+    zatvori() {
+      document.getElementById(`modal`).style.display = "none";
     },
   },
 };

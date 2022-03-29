@@ -19,9 +19,8 @@
 
     <div class="row post-info">
       <div class="col-md-2 like-box mt-3">
-        <img src="https://img.icons8.com/ios-filled/23/000000/marker.png" />{{
-          lokacija
-        }}
+        <i class="fas fa-map-marker-alt" style="font-size: 1.3rem"></i>
+        {{ lokacija }}
         <br />
         <b class="pr-2">{{ likes }}</b>
         <i
@@ -34,7 +33,7 @@
           v-if="this.$store.currentUser"
           class="fa-star klik"
           :class="favorited ? 'fas' : 'far'"
-          style="font-size: 20px; padding-left: 30px"
+          style="font-size: 20px; margin-left: 30px"
           @click="toggleFavorite()"
         ></i>
       </div>
@@ -50,6 +49,9 @@
       :toggleLike="toggleLike"
       :favorited="favorited"
       :toggleFavorite="toggleFavorite"
+      :brojLajkova="likes"
+      :cijena="cijena"
+      :broj="broj"
     />
   </div>
 </template>
@@ -57,6 +59,8 @@
 <script>
 import PostOpened from "@/components/PostOpened.vue";
 import { mapGetters } from "vuex";
+
+import { mapActions } from "vuex";
 import Vise from "@/components/Vise";
 import store from "@/store.js";
 import {
@@ -79,25 +83,22 @@ export default {
       likes: 0,
       liked: true,
       favorite: 0,
-      favorited: true,
+      favorited: false,
     };
   },
-  mounted() {
-    const objava = this.Objave.find((x) => x.id == this.id);
-    this.trenutnaObjava = objava;
-    this.likes = this.trenutnaObjava.likes.length;
-    this.liked = this.trenutnaObjava.likes.includes(this.uid);
-    this.favorite = this.trenutnaObjava.favorite.length;
-    this.favorited = this.trenutnaObjava.favorite.includes(this.uid);
+  async mounted() {
+    await this.updateObjava();
   },
   methods: {
+    ...mapActions({ refreshStore: "getPosts" }),
     async toggleFavorite() {
-      console.log(this.favorited);
+      //console.log(this.favorited);
       if (this.favorited) {
         this.favorited = !this.favorited;
         await updateDoc(doc(collection(db, "objave"), this.trenutnaObjava.id), {
           favorite: arrayRemove(this.uid),
         });
+        this.refreshStore();
 
         return false;
       } else {
@@ -105,14 +106,16 @@ export default {
         await updateDoc(doc(collection(db, "objave"), this.trenutnaObjava.id), {
           favorite: arrayUnion(this.uid),
         });
+        this.refreshStore();
+
         return true;
       }
     },
     async toggleLike() {
-      console.log("Likes: ", this.likes);
-      console.log("Liked: ", this.liked);
-      console.log("trenutnaObjava: ", this.trenutnaObjava);
-      console.log("UID: ", this.uid);
+      //console.log("Likes: ", this.likes);
+      //console.log("Liked: ", this.liked);
+      //console.log("trenutnaObjava: ", this.trenutnaObjava);
+      //console.log("UID: ", this.uid);
 
       if (this.liked) {
         this.likes -= 1;
@@ -121,6 +124,7 @@ export default {
         await updateDoc(doc(collection(db, "objave"), this.trenutnaObjava.id), {
           likes: arrayRemove(this.uid),
         });
+        this.refreshStore();
         return false;
       } else {
         this.likes += 1;
@@ -128,12 +132,21 @@ export default {
         await updateDoc(doc(collection(db, "objave"), this.trenutnaObjava.id), {
           likes: arrayUnion(this.uid),
         });
+        this.refreshStore();
         return true;
       }
     },
-
+    async updateObjava() {
+      const objava = this.Objave.find((x) => x.id == this.id);
+      this.trenutnaObjava = objava;
+      this.likes = this.trenutnaObjava.likes.length;
+      this.liked = this.trenutnaObjava.likes.includes(this.uid);
+      this.favorite = this.trenutnaObjava.favorite.length;
+      this.favorited = this.trenutnaObjava.favorite.includes(this.uid);
+      //console.log("JELI FAVORITEANO", this.favorited);
+    },
     async obrisiPost() {
-      console.log(this.trenutnaObjava);
+      //console.log(this.trenutnaObjava);
       const objavaRef = doc(collection(db, "objave"), this.trenutnaObjava.id);
       const komentariRef = await getDocs(
         query(
@@ -152,11 +165,11 @@ export default {
         komentariRef.forEach((komentar) => {
           deleteDoc(komentar.ref);
         });
-        console.log("Post Obrisan");
+        //console.log("Post Obrisan");
         this.$router.go();
       } else {
         // Do nothing!
-        console.log("Odustao od brisanja");
+        //console.log("Odustao od brisanja");
       }
     },
   },
@@ -170,6 +183,8 @@ export default {
     lokacija: String,
     slika: String,
     korisnik_id: String,
+    cijena: String,
+    broj: String,
   },
   components: {
     PostOpened,
@@ -292,13 +307,10 @@ span {
   border-top-right-radius: 20px !important;
   border-bottom-left-radius: 20px !important;
 }
-.fa-thumbs-up,.fa-star{
+.fa-thumbs-up,
+.fa-star {
   font-size: 20px;
 }
-.fa-star{
-  margin-left: 30px;
-}
-
 
 /* SHAKE EFFECT */
 .fa-trash-alt:hover {
