@@ -177,8 +177,12 @@ export default {
 <style scoped>
 * {
   margin: 0px;
-  padding: 0;
+  padding: 0px;
   color: white;
+}
+.favourite-icon {
+  position: absolute;
+  margin-left: 50em;
 }
 .col {
 }
@@ -186,6 +190,7 @@ export default {
   margin: 0px;
   background-color: #383838;
   border-radius: 20px !important;
+  overflow: hidden;
 }
 .row {
   display: flex;
@@ -195,7 +200,6 @@ export default {
 .personal-info.row {
   width: 100%;
   height: 120px;
-  margin: auto;
 }
 
 .image-box {
@@ -219,9 +223,7 @@ export default {
 }
 .content-box > p {
   text-align: left;
-
-  margin-right: 50px;
-  margin-left: 50px;
+  margin: 60px 50px 20px 50px;
 }
 .post-info.row {
   width: 100%;
@@ -305,53 +307,12 @@ button {
   }
 
   .favourite-icon {
-    width: 20px;
-    margin-right: 15px;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .personal-info.row {
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 85%;
-  }
-  .name > p {
-    float: none;
-    transform: translate(0%, 150%);
-    font-weight: bold;
-  }
-  .image {
-    width: 80px;
-    border-radius: 40px;
-    float: none;
-    transform: translate(0%, 30%);
-  }
-
-  .post-info.row {
-    margin-top: 50px;
-    flex-direction: column-reverse;
-  }
-  .content-box > p {
-    text-align: left;
-    margin: auto;
-    margin-right: 30px;
-    margin-left: 30px;
-  }
-  .like-box {
-    margin: auto;
-  }
-  .more-info {
-    margin-top: 30px !important;
-    justify-content: center;
-    padding-bottom: 0px;
-  }
-
-  .box1 {
-    padding-bottom: 0px;
-    border-radius: 0px !important;
   }
 }
 @media only screen and (max-width: 992px) {
+  .favourite-icon {
+    margin-left: 32em;
+  }
   .card-text {
     margin-left: 3rem;
   }
@@ -365,5 +326,60 @@ button {
   .card-text {
     margin-left: 2rem;
   }
+  .personal-info {
+    flex-direction: column;
+  }
+  .favourite-icon {
+    margin-left: 15em;
+  }
 }
+@media only screen and (max-width: 600px) {
+  .personal-info {
+    flex-direction: column;
+  }
+  .name > p {
+    float: none;
+    font-weight: bold;
+  }
+  .image {
+    width: 80px;
+    border-radius: 40px;
+    float: none;
+    transform: translate(0%, 30%);
+  }
+
+  .post-info.row {
+    margin-top: 110px;
+    flex-direction: column-reverse;
+  }
+  .content-box > p {
+    text-align: center;
+    margin: auto;
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+  .like-box {
+    margin: auto;
+    margin-top: 40px !important;
+  }
+  .more-info {
+    margin-top: 30px !important;
+    justify-content: center;
+    padding-bottom: 0px;
+  }
+
+  .box1 {
+    padding-bottom: 0px;
+    border-radius: 0px !important;
+  }
+  .favourite-icon {
+    margin-left: 14em;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .favourite-icon {
+    margin-left: 10em;
+  }
+}
+
 </style>
