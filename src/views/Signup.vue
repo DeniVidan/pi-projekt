@@ -101,7 +101,7 @@ export default {
           updateProfile(auth.currentUser, {
             displayName: this.ime,
             photoURL:
-              "https://www.personality-insights.com/wp-content/uploads/2017/12/default-profile-pic-e1513291410505.jpg",
+              "https://freepikpsd.com/file/2019/10/default-profile-picture-png-1-Transparent-Images.png",
           })
             .then(() => {
               // Profile updated!

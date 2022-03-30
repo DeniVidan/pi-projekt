@@ -68,6 +68,7 @@ export default {
 }
 .w3-container {
   padding: 0;
+  overflow: hidden;
 }
 .w3-button {
   display: flex;

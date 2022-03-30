@@ -54,64 +54,71 @@
                   <input
                     type="radio"
                     value="elektrotehnicar"
+                    id="elektrotehnicar"
                     name="isto"
                     @change="(e) => (this.newVrsta = e.target.value)"
                   />
-                  <label for="el"> Elektrotehničar</label>
+                  <label for="elektrotehnicar"> Elektrotehničar</label>
                 </li>
                 <li>
                   <input
                     type="radio"
                     value="vodoinstalater"
+                    id="vodoinstalater"
                     name="isto"
                     @change="(e) => (this.newVrsta = e.target.value)"
                   />
-                  <label for="voda"> Vodoinstalater</label>
+                  <label for="vodoinstalater"> Vodoinstalater</label>
                 </li>
                 <li>
                   <input
                     type="radio"
                     value="ciscenje"
+                    id="ciscenje"
                     name="isto"
                     @change="(e) => (this.newVrsta = e.target.value)"
                   />
-                  <label for="čiščenje"> Čiščenje</label>
+                  <label for="ciscenje"> Čiščenje</label>
                 </li>
                 <li>
                   <input
                     type="radio"
                     value="odrzavanjeVrta"
+                    id="odrzavanjeVrta"
                     name="isto"
                     @change="(e) => (this.newVrsta = e.target.value)"
                   />
-                  <label for="vrt"> Održavanje vrta</label>
+                  <label for="odrzavanjeVrta"> Održavanje vrta</label>
                 </li>
                 <li>
                   <input
                     type="radio"
                     value="soboslikar"
+                    id="soboslikar"
                     name="isto"
                     @change="(e) => (this.newVrsta = e.target.value)"
                   />
-                  <label for="soboslikanje"> Soboslikanje</label>
+                  <label for="soboslikar"> Soboslikanje</label>
                 </li>
                 <li>
                   <input
                     type="radio"
                     value="automehanicar"
+                    id="automehanicar1"
                     name="isto"
                     @change="(e) => (this.newVrsta = e.target.value)"
                   />
-                  <label for="automehanicar"> Automehaničar</label>
+                  <label for="automehanicar1"> Automehaničar</label>
                 </li>
                 <li>
                   <input
                     type="radio"
                     value="ostalo"
+                    id="ostalo1"
                     name="isto"
                     @change="(e) => (this.newVrsta = e.target.value)"
                   />
-                  <label for="ostalo"> Ostalo</label>
+                  <label for="ostalo1"> Ostalo</label>
                 </li>
               </ul>
             </div>

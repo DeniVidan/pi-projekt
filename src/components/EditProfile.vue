@@ -28,8 +28,8 @@
             @change="setImage"
           />
           <button
-            class="mt-4"
-            style="background-color: lightgreen; width: 100px"
+            class=""
+            style=""
             @click.prevent="profilePicture"
             :disabled="isSending"
           >
@@ -125,14 +125,20 @@ body {
   margin-bottom: 20px;
 }
 button {
+  margin-top: 20px !important;
   padding: 8px 5px;
   border: 0.5px solid grey;
   border-radius: 5px;
+  background-color: lightgreen; 
+  width: 100px;
 }
 @media only screen and (max-width: 576px) {
   input,
   label {
     margin: 0 20px;
+  }
+  button{
+    margin-left: 20px !important;
   }
 }
 </style>

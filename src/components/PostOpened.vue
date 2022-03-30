@@ -190,7 +190,7 @@ export default {
   margin: 0px;
   background-color: #383838;
   border-radius: 20px !important;
-  overflow: hidden;
+  overflow-x: hidden !important;
 }
 .row {
   display: flex;
@@ -301,7 +301,7 @@ button {
     border-bottom: transparent;
     border-right: transparent;
     border-left: transparent;
-  }
+}
   .like-box {
     width: 150px;
   }
