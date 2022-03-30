@@ -51,7 +51,7 @@
               to="/profile"
               exact
               v-if="this.$store.currentUser"
-              >Moj profil</router-link
+              ><i class="fal fa-user-circle"></i> {{ name }}</router-link
             >
           </li>
           <li class="nav-item" v-if="this.$store.currentUser">
@@ -62,7 +62,7 @@
               to="/login"
               exact
               @click.prevent="odjavi_korisnika()"
-              >Odjava</a
+              ><i class="fas fa-sign-out"></i> Odjava</a
             >
           </li>
           <li class="nav-item">
@@ -96,6 +96,11 @@ import store from "@/store.js";
 import { getAuth, signOut } from "@/firebase.js";
 export default {
   name: "Navbar",
+  data() {
+    return {
+      name: store.currentUser.displayName,
+    };
+  },
   methods: {
     odjavi_korisnika() {
       const auth = getAuth();
@@ -119,6 +124,9 @@ a {
   text-decoration: none;
 
   color: #ffcd94 !important;
+}
+li {
+  font-size: 1.2rem;
 }
 #nav a.router-link-exact-active {
   text-decoration: none;
