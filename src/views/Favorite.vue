@@ -22,6 +22,8 @@
             :id="Objava.id"
             :favorite="Objava.favorite"
             :likes="Objava.likes"
+            :cijena="Objava.cijena"
+            :broj="Objava.broj"
           />
         </div>
         <div v-else>Nemate dodanih omiljenih postova</div>

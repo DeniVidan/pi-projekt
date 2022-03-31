@@ -10,6 +10,10 @@
         :slika="Objava.korisnik.imageURL"
         :korisnik_id="Objava.korisnik.id"
         :id="Objava.id"
+        :likes="Objava.likes"
+        :favorite="Objava.favorite"
+        :cijena="Objava.cijena"
+        :broj="Objava.broj"
       />
     </div>
     <div v-else>Nemate objavljenih postova</div>
