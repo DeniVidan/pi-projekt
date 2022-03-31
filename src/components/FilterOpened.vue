@@ -25,9 +25,19 @@
             <div class="filter-item kategorija">
               <b>Kategorija</b> <br />
               <div style="padding-left: 5px">
-                <input type="checkbox" id="nudim" name="nudim" />
+                <input
+                  type="radio"
+                  name="test"
+                  :value="false"
+                  @click="handleTip"
+                />
                 <label for="nudim">Nudim posao</label> <br />
-                <input type="checkbox" id="trazim" name="trazim" />
+                <input
+                  type="radio"
+                  name="test"
+                  :value="true"
+                  @click="handleTip"
+                />
                 <label for="trazim">Tražim posao</label>
               </div>
             </div>
