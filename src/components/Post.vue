@@ -53,6 +53,9 @@
       :cijena="cijena"
       :broj="broj"
     />
+    <div v-if="!this.$store.currentUser" style="margin-left: 45rem">
+      Cijena: <b>{{ cijena }}kn</b>
+    </div>
   </div>
 </template>
 
