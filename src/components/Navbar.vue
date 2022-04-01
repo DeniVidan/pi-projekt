@@ -109,7 +109,7 @@ export default {
           // Sign-out successful.
           console.log("Odjavio si se");
           store.currentUser = null;
-          this.$router.push({ name: "Login" });
+          this.$router.push({ name: "Home" });
         })
         .catch((error) => {
           console.log(error);

@@ -22,7 +22,7 @@
         <i class="fas fa-map-marker-alt" style="font-size: 1.3rem"></i>
         {{ lokacija }}
         <br />
-        <b class="pr-2">{{ likes }}</b>
+        <b v-if="this.$store.currentUser" class="pr-2">{{ likes }}</b>
         <i
           v-if="this.$store.currentUser"
           class="fa-thumbs-up mt-3 klik"
@@ -44,6 +44,7 @@
       </div>
     </div>
     <Vise
+      v-if="this.$store.currentUser"
       :trenutnaObjava="trenutnaObjava"
       :liked="liked"
       :toggleLike="toggleLike"
@@ -53,7 +54,11 @@
       :cijena="cijena"
       :broj="broj"
     />
-    <div v-if="!this.$store.currentUser" style="margin-left: 45rem">
+    <div
+      v-if="!this.$store.currentUser"
+      class="molim"
+      style="margin-left: 45rem"
+    >
       Cijena: <b>{{ cijena }}kn</b>
     </div>
   </div>
@@ -357,6 +362,9 @@ span {
   .favourite-icon {
     width: 20px;
     margin-right: 15px;
+  }
+  .molim {
+    margin-left: 0 !important;
   }
 }
 @media only screen and (max-width: 600px) {
