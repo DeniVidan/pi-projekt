@@ -83,11 +83,23 @@
                 <label for="soboslikanje">Soboslikanje</label>
               </li>
               <li>
-                <input type="radio" id="automehanicar" name="type" />
+                <input
+                  type="radio"
+                  id="automehanicar"
+                  name="type"
+                  value="automehanicar"
+                  @change="(e) => (vrsta = e.target.value)"
+                />
                 <label for="automehanicar">Automehaničar</label>
               </li>
               <li>
-                <input type="radio" id="ostalo" name="type" />
+                <input
+                  type="radio"
+                  id="ostalo"
+                  name="type"
+                  value="ostalo"
+                  @change="(e) => (vrsta = e.target.value)"
+                />
                 <label for="ostalo">Ostalo</label>
               </li>
             </ul>
