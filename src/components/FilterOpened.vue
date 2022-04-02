@@ -28,6 +28,7 @@
                 <input
                   type="radio"
                   name="test"
+                  id="nudim"
                   :value="false"
                   @click="handleTip"
                 />
@@ -35,6 +36,7 @@
                 <input
                   type="radio"
                   name="test"
+                  id="trazim"
                   :value="true"
                   @click="handleTip"
                 />
@@ -54,52 +56,52 @@
                   <li>
                     <input
                       type="radio"
-                      id="el"
+                      id="elektrotehnicar"
                       name="type"
                       value="elektrotehnicar"
                       @change="(e) => (vrsta = e.target.value)"
                     />
-                    <label for="el">Elektrotehničar</label>
+                    <label for="elektrotehnicar">Elektrotehničar</label>
                   </li>
                   <li>
                     <input
                       type="radio"
-                      id="voda"
+                      id="Vodoinstalater"
                       name="type"
                       value="vodoinstalater"
                       @change="(e) => (vrsta = e.target.value)"
                     />
-                    <label for="voda">Vodoinstalater</label>
+                    <label for="Vodoinstalater">Vodoinstalater</label>
                   </li>
                   <li>
                     <input
                       type="radio"
-                      id="čiščenje"
+                      id="ciscenje"
                       name="type"
                       value="ciscenje"
                       @change="(e) => (vrsta = e.target.value)"
                     />
-                    <label for="čiščenje">Čiščenje</label>
+                    <label for="ciscenje">Čiščenje</label>
                   </li>
                   <li>
                     <input
                       type="radio"
-                      id="vrt"
+                      id="odrzavanjeVrta"
                       name="type"
                       value="odrzavanjeVrta"
                       @change="(e) => (vrsta = e.target.value)"
                     />
-                    <label for="vrt">Održavanje vrta</label>
+                    <label for="odrzavanjeVrta">Održavanje vrta</label>
                   </li>
                   <li>
                     <input
                       type="radio"
-                      id="soboslikanje"
+                      id="soboslikar"
                       name="type"
                       value="soboslikar"
                       @change="(e) => (vrsta = e.target.value)"
                     />
-                    <label for="soboslikanje">Soboslikanje</label>
+                    <label for="soboslikar">Soboslikanje</label>
                   </li>
                   <li>
                     <input

@@ -214,7 +214,7 @@ export default {
 .box {
   margin: auto;
   max-width: 830px;
-  min-height: 250px;
+  min-height: 210px;
   border-radius: 10px;
   border: 1px solid rgba(128, 128, 128, 0.514);
   background-color: #e5e5e5;
