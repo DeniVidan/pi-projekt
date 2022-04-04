@@ -15,7 +15,7 @@ Figma: [Link prototipa](https://www.figma.com/proto/JJUvr0EqYjv6U2JxNTIUED/Skica
 
 ### Javni link za aplikaciju
 
-Web: _in poggers_
+Web: [Link aplikacije](https://majstor.netlify.app/)
 
 ### Organizacija
 
